@@ -9,10 +9,10 @@ using uk.co.nfocus6.BDDproject.Utils;
 
 namespace uk.co.nfocus6.BDDproject.POM
 {
-    internal class OrderPagePOM
+    internal class OrderPOM
     {
         private IWebDriver _driver;
-        public OrderPagePOM(IWebDriver driver)
+        public OrderPOM(IWebDriver driver)
         {
             this._driver = driver;
             string headingText = driver.FindElement(By.TagName("h1")).Text;

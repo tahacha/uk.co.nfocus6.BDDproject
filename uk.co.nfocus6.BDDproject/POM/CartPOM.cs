@@ -12,10 +12,10 @@ using uk.co.nfocus6.BDDproject.Utils;
 
 namespace uk.co.nfocus6.BDDproject.POM
 {
-    internal class CartPagePOM
+    internal class CartPOM
     {
         private IWebDriver _driver;
-        public CartPagePOM(IWebDriver driver) //constructor 
+        public CartPOM(IWebDriver driver) //constructor 
         {
             this._driver = driver;
             string headingText = driver.FindElement(By.TagName("h1")).Text;

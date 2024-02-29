@@ -9,11 +9,11 @@ using uk.co.nfocus6.BDDproject.Utils;
 
 namespace uk.co.nfocus6.BDDproject.POM
 {
-    internal class HomePagePOM
+    internal class HomePOM
     {
         private IWebDriver _driver;
         private IWebElement _dismissText => HelperLib.WaitForElement(_driver, By.LinkText("Dismiss")); //find dismiss text - banner
-        public HomePagePOM(IWebDriver driver)
+        public HomePOM(IWebDriver driver)
         {
             this._driver = driver;
             string headingText = _driver.FindElement(By.TagName("h1")).Text;

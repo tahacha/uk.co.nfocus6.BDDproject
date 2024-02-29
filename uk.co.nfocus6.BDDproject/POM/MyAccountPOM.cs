@@ -10,10 +10,10 @@ using uk.co.nfocus6.BDDproject.Utils;
 namespace uk.co.nfocus6.BDDproject.POM
 {
     
-    internal class MyAccountPagePOM
+    internal class MyAccountPOM
     {
         private IWebDriver _driver;
-        public MyAccountPagePOM(IWebDriver driver) //constructor that takes in a driver from the test case
+        public MyAccountPOM(IWebDriver driver) //constructor that takes in a driver from the test case
         {
             this._driver = driver;
             string headingText = driver.FindElement(By.TagName("h1")).Text;

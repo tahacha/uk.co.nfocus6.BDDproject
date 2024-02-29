@@ -9,10 +9,10 @@ using uk.co.nfocus6.BDDproject.Utils;
 
 namespace uk.co.nfocus6.BDDproject.POM
 {
-    internal class CheckoutPagePOM
+    internal class CheckoutPOM
     {
         private IWebDriver _driver;
-        public CheckoutPagePOM(IWebDriver driver)
+        public CheckoutPOM(IWebDriver driver)
         {
             this._driver = driver;
             string headingText = _driver.FindElement(By.TagName("h1")).Text;

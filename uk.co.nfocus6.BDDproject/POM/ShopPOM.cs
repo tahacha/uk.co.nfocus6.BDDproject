@@ -9,10 +9,10 @@ using uk.co.nfocus6.BDDproject.Utils;
 
 namespace uk.co.nfocus6.BDDproject.POM
 {
-    internal class ShopPagePOM
+    internal class ShopPOM
     {
         private IWebDriver _driver;
-       public ShopPagePOM(IWebDriver driver) 
+       public ShopPOM(IWebDriver driver) 
         {
             this._driver = driver;
             string headingText = _driver.FindElement(By.TagName("h1")).Text;
