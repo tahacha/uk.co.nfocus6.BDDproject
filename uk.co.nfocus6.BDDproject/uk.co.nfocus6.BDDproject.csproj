@@ -20,7 +20,7 @@
   <ItemGroup>
     <Folder Include="Drivers\" />
     <Folder Include="Utils\" />
-    <Folder Include="POM Classes\" />
+    <Folder Include="POM\" />
     <Folder Include="Support\" />
   </ItemGroup>
 
