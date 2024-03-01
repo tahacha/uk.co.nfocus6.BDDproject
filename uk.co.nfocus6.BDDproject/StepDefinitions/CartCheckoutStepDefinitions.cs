@@ -3,14 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System;
+using TechTalk.SpecFlow;
 
 namespace uk.co.nfocus6.BDDproject.StepDefinitions
 {
-    using System;
-    using TechTalk.SpecFlow;
-
-    namespace MyNamespace
-    {
+    
         [Binding]
         public class CartCheckoutStepDefinitions
         {
@@ -84,5 +82,4 @@ namespace uk.co.nfocus6.BDDproject.StepDefinitions
             }
 
         }
-    }
 }
