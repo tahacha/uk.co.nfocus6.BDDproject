@@ -24,13 +24,14 @@ namespace uk.co.nfocus6.BDDproject.Utils
         [Before]
         public void SetUp()
         {
-
+            _driver = new EdgeDriver();
+            _scenarioContext["theDriver"] = _driver; //creates new driver stores it within _scenarioContext
         }
 
         [After]
         public void TearDown()
         {
-
+            _driver.Quit();
         }
 
     }
