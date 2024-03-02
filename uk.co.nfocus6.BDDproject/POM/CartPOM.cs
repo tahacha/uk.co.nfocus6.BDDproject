@@ -70,17 +70,25 @@ namespace uk.co.nfocus6.BDDproject.POM
         public void ApplyCoupon()
         {
             _applyCoupon.Click(); //applies coupon 
-            //_cartDiscount.Click();
-
-            //HelperLib.StaticWaitForElement(_driver, By.CssSelector(".cart-discount > th")); //waits for coupon field 
-            //HelperLib.StaticWaitForElement(_driver, By.TagName("tbody"));
-            //HelperLib.StaticTakeScreenshot(_driver, By.TagName("tbody"), "Cart_Table");
         }
 
         public string DiscountApplied()
         {
-            string couponText = _cartDiscount.Text;
-            return couponText; 
+            try
+            {
+                if(_cartDiscount.Displayed)
+                {
+                    string couponText = _cartDiscount.Text;
+                    return couponText;
+                }
+
+            }
+            catch (Exception)
+            {
+                //do nothing
+            }
+            return "coupon invalid";
+             
         }
 
         

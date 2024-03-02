@@ -58,7 +58,7 @@ namespace uk.co.nfocus6.BDDproject.POM
             //SuccessfulLogin();
         }
 
-        public string SuccessfuLogin()
+        public bool SuccessfulLogin()
         {
            
             try
@@ -66,7 +66,7 @@ namespace uk.co.nfocus6.BDDproject.POM
                 //HelperLib.StaticWaitForElement(_driver, By.LinkText("Log out"));
                 if(_logoutLink.Displayed)
                 {
-                    return "login successful";
+                    return true; //if logged in 
                 }
 
             }
@@ -76,7 +76,7 @@ namespace uk.co.nfocus6.BDDproject.POM
                 //do nothing 
             }
 
-            return "login unsuccessful";
+            return false;
         }
 
         public void ClickOrders()

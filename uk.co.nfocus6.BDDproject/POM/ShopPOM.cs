@@ -20,17 +20,29 @@ namespace uk.co.nfocus6.BDDproject.POM
             Assert.That(headingText, Does.Contain("Shop")); //checks that user is on shop page
             Console.WriteLine("Viewing shop page");
         }
+        private string _itemName; 
 
         //locators
         private IWebElement _scroll => HelperLib.WaitForElement(_driver, By.TagName("body"));
 
-        private IWebElement _addItemCart => HelperLib.WaitForElement(_driver, By.CssSelector(".post-28 > .button"));
+        private IWebElement _theItem => HelperLib.WaitForElement(_driver, By.CssSelector("a[aria-label=\"Add “" + _itemName + "” to your cart\"]"));
 
         private IWebElement _viewCart => HelperLib.WaitForElement(_driver, By.LinkText("View cart"));
 
-        public void AddItemToCart()
+        public bool AddItemToCart(string item)
         {
-            _addItemCart.Click();
+            _itemName = item; //places the item that user wants into _itemName
+            try
+            {
+                _theItem.Click();
+                return true;
+            }
+            catch
+            {
+
+            }
+            return false;
+            
         }
 
         public void ViewCart()

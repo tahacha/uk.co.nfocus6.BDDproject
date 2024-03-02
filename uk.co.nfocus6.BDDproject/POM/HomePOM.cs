@@ -17,7 +17,7 @@ namespace uk.co.nfocus6.BDDproject.POM
         {
             this._driver = driver;
             string headingText = _driver.FindElement(By.TagName("h1")).Text;
-            HelperLib.StaticWaitForElement(_driver, By.LinkText("Edgewords Shop")); //waits for page to load
+            HelperLib.StaticWaitForElement(_driver, By.LinkText("nFocus Shop")); //waits for page to load
             Assert.That(headingText, Does.Contain("Welcome")); //checks to see if it's the home page
             Console.WriteLine("Viewing home page");
         }
