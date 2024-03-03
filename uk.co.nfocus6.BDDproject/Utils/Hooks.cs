@@ -52,7 +52,7 @@ namespace uk.co.nfocus6.BDDproject.Utils
             {
                 _driver.Url = startPage;
             }
-            catch(Exception e) //problem with URL declared in run settings
+            catch (Exception e) //problem with URL declared in run settings
             {
                 Console.WriteLine("Error with setting URL, please check WebAppURL in run settings");
                 Console.WriteLine(e.Message);
@@ -75,7 +75,49 @@ namespace uk.co.nfocus6.BDDproject.Utils
         [After]
         public void TearDown()
         {
-            _driver.Quit();
+            string startPage = TestContext.Parameters["WebAppURL"];
+            if(startPage == string.Empty)
+            {
+                Console.WriteLine("Driver closed to missing URL, please check WebAppURL");
+                _driver.Quit(); //closes driver 
+                return;
+            }
+
+            bool login = (bool)_scenarioContext["loggedIn"]; //check if user logged in 
+            if (login)
+            {
+                CheckCart();
+                Logout();
+                Console.WriteLine("Logged out");
+                _driver.Quit();
+            }
+
+            else
+            {
+                Console.WriteLine("User not logged in, logout process not needed");
+                _driver.Quit();
+            }
+            
+        }
+        private void CheckCart()
+        {
+            //navigate to cart
+            NavBarPOM nav = new NavBarPOM(_driver);
+            nav.ViewCart();
+
+            //check cart
+            CartPOM cart = new CartPOM(_driver);
+            cart.EmptyCart();
+        }
+        private void Logout()
+        {
+            //navigate to the my account page
+            NavBarPOM nav = new NavBarPOM(_driver);
+            nav.ViewMyAccount();
+
+            //clicks the logout button
+            MyAccountPOM myAccount = new MyAccountPOM(_driver);
+            myAccount.ClickLogout();
         }
 
     }

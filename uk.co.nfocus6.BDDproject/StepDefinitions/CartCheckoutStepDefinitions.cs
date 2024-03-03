@@ -8,6 +8,7 @@ using TechTalk.SpecFlow;
 using OpenQA.Selenium;
 using uk.co.nfocus6.BDDproject.POM;
 using NUnit.Framework;
+using uk.co.nfocus6.BDDproject.Utils;
 
 namespace uk.co.nfocus6.BDDproject.StepDefinitions
 {
@@ -115,29 +116,60 @@ namespace uk.co.nfocus6.BDDproject.StepDefinitions
 
         [When(@"I proceed to checkout")]
         public void WhenIProceedToCheckout()
-        { //proceed to checkout from cart
-            _scenarioContext.Pending();
+        { 
+            //proceed to checkout from cart
+            CartPOM cartPage = new CartPOM(_driver);
+            cartPage.ProceedToCheckout(); 
         }
 
         [When(@"Fill in my address and click the payment by cheque option")]
         public void FillInMyAddressAndClickThePaymentByChequeOption()
         {
             //fill in details and press payment by cheque
-            _scenarioContext.Pending();
+            //checkout page 
+            CustomerDetails theCustomer = new CustomerDetails("penguin", "arctic", "1 Icy Street", "Icy", "SG13 8TN", "123456789"); //instantiates a new object of the CustomerDetails class
+
+            //enter all details
+            CheckoutPOM checkout = new CheckoutPOM(_driver);
+            checkout.EnterFirstName(theCustomer.GetFirstName());
+            checkout.EnterLastName(theCustomer.GetLastName());
+            checkout.EnterStreetAddress(theCustomer.GetAddress());
+            checkout.EnterCity(theCustomer.GetCity());
+            checkout.EnterPostcode(theCustomer.GetPostcode());
+            checkout.EnterPhone(theCustomer.GetPhone());
+            Console.WriteLine("Customer details entered");
+
+            checkout.ClickChequePayment(); //clicks cheque payment
         }
 
         [Then(@"I can place my order and see a summary of my order including an order number")]
         public void ThenICanPlaceMyOrderAndSeeASummaryOfMyOrderIncludingAnOrderNumber()
         {
-            //sees summary of order, takes order no and prints to console 
-            _scenarioContext.Pending();
+            //places order and captures the order number 
+            CheckoutPOM checkout = new CheckoutPOM(_driver);
+            checkout.ClickChequePayment(); 
+            checkout.ClickPlaceOrder();
+            string orderNo = checkout.GetOrderNo(); 
+            Console.WriteLine("Order Placed, Order No: " + "#" + orderNo); //writes order no to console
+            _scenarioContext["orderNo"] = orderNo;
         }
 
         [Then(@"Verify my order has been placed my checking the same order number appears on the orders page")]
         public void ThenVerifyMyOrderHasBeenPlacedMyCheckingTheSameOrderNumberAppearsOnTheOrdersPage()
         {
             //takes order no from summary and compares it to the order no that appears in the order table
-            _scenarioContext.Pending();
+            NavBarPOM navBar = new NavBarPOM(_driver);
+            navBar.ViewMyAccount(); //navigate to My Account
+
+            //navigate to orders page
+            MyAccountPOM myAccunt = new MyAccountPOM(_driver);
+            myAccunt.ClickOrders(); 
+
+            OrderPOM orders = new OrderPOM(_driver);
+            
+            string orderTable = orders.GetOrderTable(); //table text
+            string orderNum = (string)_scenarioContext["orderNo"];
+            Assert.That(orderTable, Does.Contain(orderNum), "Order not in table");
         }
 
     }

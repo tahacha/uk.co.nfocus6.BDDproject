@@ -3,7 +3,7 @@
 A short summary of the feature
 Background: 
 Given I am logged in to the ecommerce site 
-And I have added a 'Hoodie with Pocket' to my cart 
+And I have added a 'Polo' to my cart 
 
 @GUI 
 Scenario: Checking Discount Applied

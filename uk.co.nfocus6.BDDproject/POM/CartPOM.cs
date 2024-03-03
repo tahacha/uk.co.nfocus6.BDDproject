@@ -159,12 +159,6 @@ namespace uk.co.nfocus6.BDDproject.POM
             {
                 RemoveItem();
             }
-
-            else
-            {
-                Console.WriteLine("Cart Empty");
-            }
-            
         }
 
         public void ReturnToShop()
