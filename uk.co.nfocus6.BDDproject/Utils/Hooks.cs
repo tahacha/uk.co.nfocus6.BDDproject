@@ -15,7 +15,7 @@ namespace uk.co.nfocus6.BDDproject.Utils
     [Binding]
     public class Hooks
     {
-        private IWebDriver _driver;
+        private static IWebDriver _driver;
         private readonly ScenarioContext _scenarioContext;
 
         public Hooks(ScenarioContext scenarioContext)
@@ -23,7 +23,7 @@ namespace uk.co.nfocus6.BDDproject.Utils
             _scenarioContext = scenarioContext;
         }
 
-        [Before]
+        [Before("@GUI")]
         public void SetUp()
         {
             string browser = Environment.GetEnvironmentVariable("BROWSER");
@@ -72,7 +72,7 @@ namespace uk.co.nfocus6.BDDproject.Utils
             nav.ViewMyAccount();
         }
 
-        [After]
+        [After("@GUI")]
         public void TearDown()
         {
             string startPage = TestContext.Parameters["WebAppURL"];
@@ -86,7 +86,7 @@ namespace uk.co.nfocus6.BDDproject.Utils
             bool login = (bool)_scenarioContext["loggedIn"]; //check if user logged in 
             if (login)
             {
-                CheckCart();
+                CheckCart(); //check if cart needs to be emptied
                 Logout();
                 Console.WriteLine("Logged out");
                 _driver.Quit();

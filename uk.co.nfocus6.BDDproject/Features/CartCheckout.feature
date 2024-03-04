@@ -1,11 +1,12 @@
-﻿Feature: EcommerceCartCheckoutFunctionality
+﻿@GUI
+Feature: EcommerceCartCheckoutFunctionality
 
 A short summary of the feature
 Background: 
 Given I am logged in to the ecommerce site 
 And I have added a 'Polo' to my cart 
 
-@GUI 
+@CheckDiscount
 Scenario: Checking Discount Applied
 	When I input the coupon '<coupon>' and click apply
 	Then A discount of <discount>% is applied to my cart
@@ -15,8 +16,8 @@ Examples:
 	| coupon    | discount |
 	| edgewords | 10       |
 	| nfocus    | 25       |
-	
-@GUI
+
+@CheckOrderNo
 Scenario: Checking The Order Has Been Placed
 	When I proceed to checkout
 	And Fill in my address and click the payment by cheque option 
