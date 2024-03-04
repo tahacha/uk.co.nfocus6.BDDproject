@@ -1,4 +1,6 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
+using OpenQA.Selenium.DevTools.V120.Media;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -16,16 +18,15 @@ namespace uk.co.nfocus6.BDDproject.POM
         public MyAccountPOM(IWebDriver driver) //constructor that takes in a driver from the test case
         {
             this._driver = driver;
-            string headingText = driver.FindElement(By.TagName("h1")).Text;
+            string headingText = _headingText.Text;
             //HelperLib.StaticWaitForElement(_driver, By.TagName("h1")); //waits for it to appear
-
             
-            //Assert.That(headingText, Does.Contain("My account"), "Not viewing My account page"); //checks to see if the current page is My account
-            Console.WriteLine("Viewing My account page");
+            Assert.That(headingText, Does.Contain("My account"), "Not viewing My account page"); //checks to see if the current page is My account
+            Console.WriteLine("View My Account Page");
         }
 
         //locators
-
+        private IWebElement _headingText => HelperLib.WaitForElement(_driver, By.TagName("h1"));
         private IWebElement _usernameField => HelperLib.WaitForElement(_driver, By.CssSelector("#username"));
         //private IWebElement _usernameField => _driver.FindElement(By.CssSelector("#username")); //locates username field
         private IWebElement _passwordField => HelperLib.WaitForElement(_driver, By.CssSelector("#password"));

@@ -15,13 +15,14 @@ namespace uk.co.nfocus6.BDDproject.POM
         public CheckoutPOM(IWebDriver driver)
         {
             this._driver = driver;
-            string headingText = _driver.FindElement(By.TagName("h1")).Text;
-            HelperLib.StaticWaitForElement(_driver, By.TagName("h1"));
+            string headingText = _headingText.Text;
+            _firstName.Click(); //wait
             Assert.That(headingText, Does.Contain("Checkout"), "Not viewing checkout page"); //checks if user is on checkout page
             Console.WriteLine("Viewing checkout page"); 
 
         }
         //locators 
+        private IWebElement _headingText => HelperLib.WaitForElement(_driver, By.TagName("h1"));
         private IWebElement _firstName => HelperLib.WaitForElement(_driver, By.Id("billing_first_name"));
         private IWebElement _lastName => HelperLib.WaitForElement(_driver, By.Id("billing_last_name"));
         private IWebElement _streetAddress => HelperLib.WaitForElement(_driver, By.Id("billing_address_1"));

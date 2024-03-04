@@ -18,13 +18,13 @@ namespace uk.co.nfocus6.BDDproject.POM
         public CartPOM(IWebDriver driver) //constructor 
         {
             this._driver = driver;
-            string headingText = driver.FindElement(By.TagName("h1")).Text;
-            HelperLib.StaticWaitForElement(_driver, By.TagName("h1"));
+            string headingText = _headingText.Text;
             Assert.That(headingText, Does.Contain("Cart"), "Not viewing the cart"); //check on cart oage 
-            Console.WriteLine("Viewing the cart page");
+            
         }
 
         //locators
+        private IWebElement _headingText => HelperLib.WaitForElement(_driver, By.TagName("h1"));
         private IWebElement _couponInput => HelperLib.WaitForElement(_driver, By.Id("coupon_code"));
 
         private IWebElement _originalTotal => HelperLib.WaitForElement(_driver, By.CssSelector(".cart-subtotal > td")); //gets original price 

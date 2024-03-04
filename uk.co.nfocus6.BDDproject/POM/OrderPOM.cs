@@ -15,12 +15,13 @@ namespace uk.co.nfocus6.BDDproject.POM
         public OrderPOM(IWebDriver driver)
         {
             this._driver = driver;
-            string headingText = driver.FindElement(By.TagName("h1")).Text;
-            HelperLib.StaticWaitForElement(_driver, By.TagName("h1"));
+            string headingText = _headingText.Text;
+            _orderTable.Click();
             Assert.That(headingText, Does.Contain("Orders"), "Not viewing orders page"); //checks user is on orders page
             Console.WriteLine("Viewing Orders page");
         }
         //locators
+        private IWebElement _headingText => HelperLib.WaitForElement(_driver, By.TagName("h1"));
         private IWebElement _orderTable => HelperLib.WaitForElement(_driver, By.TagName("tbody"));
 
         //methods 

@@ -12,16 +12,22 @@ namespace uk.co.nfocus6.BDDproject.POM
     internal class HomePOM
     {
         private IWebDriver _driver;
-        private IWebElement _dismissText => HelperLib.WaitForElement(_driver, By.LinkText("Dismiss")); //find dismiss text - banner
+        
+
+        
         public HomePOM(IWebDriver driver)
         {
             this._driver = driver;
-            string headingText = _driver.FindElement(By.TagName("h1")).Text;
-            HelperLib.StaticWaitForElement(_driver, By.LinkText("nFocus Shop")); //waits for page to load
+            string headingText = _headingText.Text;
+            //HelperLib.StaticWaitForElement(_driver, By.LinkText("nFocus Shop")); //waits for page to load
+            _body.Click();
             Assert.That(headingText, Does.Contain("Welcome")); //checks to see if it's the home page
             Console.WriteLine("Viewing home page");
         }
-
+        //locators
+        private IWebElement _headingText => HelperLib.WaitForElement(_driver, By.TagName("h1"));
+        private IWebElement _body => HelperLib.WaitForElement(_driver, By.TagName("body"));
+        private IWebElement _dismissText => HelperLib.WaitForElement(_driver, By.LinkText("Dismiss")); //find dismiss text - banner
         public void DismissBanner()
         {
             _dismissText.Click();

@@ -70,7 +70,8 @@ namespace uk.co.nfocus6.BDDproject.StepDefinitions
             Console.WriteLine("Item added to cart");
 
             //navigates to cart
-            nav.ViewCart();
+            //nav.ViewCart();
+            shop.ViewCart();
         }
 
         [When(@"I input the coupon '(.*)' and click apply")]
