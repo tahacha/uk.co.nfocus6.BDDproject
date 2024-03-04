@@ -7,11 +7,15 @@ And I have added a 'Polo' to my cart
 
 @GUI 
 Scenario: Checking Discount Applied
-	When I input the coupon 'nfocus' and click apply
-	Then A discount of 25% is applied to my cart
-	And The order total updates accordingly 
+	When I input the coupon '<coupon>' and click apply
+	Then A discount of <discount>% is applied to my cart
+	And  The order total updates accordingly 
 	#maybe add a table, for option for nfocus coupon.
-
+Examples:
+	| coupon    | discount |
+	| edgewords | 10       |
+	| nfocus    | 25       |
+	
 @GUI
 Scenario: Checking The Order Has Been Placed
 	When I proceed to checkout
