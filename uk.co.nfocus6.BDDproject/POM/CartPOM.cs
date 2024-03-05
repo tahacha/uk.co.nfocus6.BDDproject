@@ -18,6 +18,7 @@ namespace uk.co.nfocus6.BDDproject.POM
         public CartPOM(IWebDriver driver) //constructor 
         {
             this._driver = driver;
+            _headingText.Click();
             string headingText = _headingText.Text;
             Assert.That(headingText, Does.Contain("Cart"), "Not viewing the cart"); //check on cart oage 
             
@@ -46,6 +47,8 @@ namespace uk.co.nfocus6.BDDproject.POM
         private IWebElement _returnToShop => HelperLib.WaitForElement(_driver, By.LinkText("Return to shop"),10);
 
         private IWebElement _bodyText => HelperLib.WaitForElement(_driver, By.TagName("body"));
+
+        private IWebElement _cartTotals => HelperLib.WaitForElement(_driver, By.CssSelector(".cart_totals"));
 
         //decimals 
         
@@ -79,6 +82,7 @@ namespace uk.co.nfocus6.BDDproject.POM
                 if(_cartDiscount.Displayed)
                 {
                     string couponText = _cartDiscount.Text;
+                    HelperLib.StaticTakeScreenshot(_driver, _cartDiscount, "coupon_status");
                     return couponText;
                 }
 
@@ -87,7 +91,7 @@ namespace uk.co.nfocus6.BDDproject.POM
             {
                 //do nothing
             }
-            HelperLib.StaticTakeScreenshot(_driver, _orderTotal, "coupon_status");
+            HelperLib.StaticTakeScreenshot(_driver, _cartDiscount, "coupon_status");
             return "coupon invalid";
              
         }

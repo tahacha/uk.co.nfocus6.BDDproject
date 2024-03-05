@@ -18,9 +18,8 @@ namespace uk.co.nfocus6.BDDproject.POM
         public MyAccountPOM(IWebDriver driver) //constructor that takes in a driver from the test case
         {
             this._driver = driver;
+            _headingText.Click(); 
             string headingText = _headingText.Text;
-            //HelperLib.StaticWaitForElement(_driver, By.TagName("h1")); //waits for it to appear
-            
             Assert.That(headingText, Does.Contain("My account"), "Not viewing My account page"); //checks to see if the current page is My account
             Console.WriteLine("View My Account Page");
         }
@@ -38,6 +37,9 @@ namespace uk.co.nfocus6.BDDproject.POM
 
         private IWebElement _myAccountBody => HelperLib.WaitForElement(_driver, By.TagName("div"));
         private IWebElement _errorAlert => HelperLib.WaitForElement(_driver, By.CssSelector(".woodcommerce-error::before"));
+
+        //private IWebElement _header => HelperLib.WaitForElement(_driver, By.XPath("//h1[contains(.,'My account')]"));
+        
         //service methods
 
         public void SetUsername(string username)
