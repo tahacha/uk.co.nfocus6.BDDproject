@@ -18,8 +18,7 @@ namespace uk.co.nfocus6.BDDproject.POM
         public CartPOM(IWebDriver driver) //constructor 
         {
             this._driver = driver;
-            _headingText.Click();
-            string headingText = _headingText.Text;
+            string headingText = _header.Text;
             Assert.That(headingText, Does.Contain("Cart"), "Not viewing the cart"); //check on cart oage 
             
         }
@@ -50,8 +49,9 @@ namespace uk.co.nfocus6.BDDproject.POM
 
         private IWebElement _cartTotals => HelperLib.WaitForElement(_driver, By.CssSelector(".cart_totals"));
 
+        private IWebElement _header => HelperLib.WaitForElement(_driver, By.XPath("//h1[contains(.,'Cart')]"));
         //decimals 
-        
+
 
         private decimal _originalTotalDecimal => HelperLib.ConvertToDecimal(_originalTotal); //original price as decimal
         private decimal _checkCouponDiscountDecimal => HelperLib.ConvertToDecimal(_checkCouponDiscount); //coupon discount as decimal
