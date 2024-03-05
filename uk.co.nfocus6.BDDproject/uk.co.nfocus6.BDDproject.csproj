@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <Folder Include="Drivers\" />
+    <Folder Include="Project_Screenshots\" />
     <Folder Include="Support\" />
   </ItemGroup>
 

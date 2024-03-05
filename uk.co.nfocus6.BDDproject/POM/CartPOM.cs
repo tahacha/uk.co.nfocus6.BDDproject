@@ -87,6 +87,7 @@ namespace uk.co.nfocus6.BDDproject.POM
             {
                 //do nothing
             }
+            HelperLib.StaticTakeScreenshot(_driver, _orderTotal, "coupon_status");
             return "coupon invalid";
              
         }

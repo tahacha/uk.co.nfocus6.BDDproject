@@ -12,7 +12,7 @@ namespace uk.co.nfocus6.BDDproject.POM
     internal class ShopPOM
     {
         private IWebDriver _driver;
-       public ShopPOM(IWebDriver driver) 
+        public ShopPOM(IWebDriver driver)
         {
             this._driver = driver;
             string headingText = _headingText.Text;
@@ -21,7 +21,7 @@ namespace uk.co.nfocus6.BDDproject.POM
             Assert.That(headingText, Does.Contain("Shop")); //checks that user is on shop page
             Console.WriteLine("Viewing shop page");
         }
-        private string _itemName;
+        private string _itemName = "";
 
         //locators
         private IWebElement _headingText => HelperLib.WaitForElement(_driver, By.TagName("h1"));
@@ -40,16 +40,17 @@ namespace uk.co.nfocus6.BDDproject.POM
                 _theItem.Click();
                 return true;
             }
-            catch
+            catch (Exception)
             {
 
             }
             return false;
-            
+
         }
 
         public void ViewCart()
         {
+            HelperLib.StaticTakeScreenshot(_driver, _viewCart, "item_added_to_cart");
             _viewCart.Click();
         }
 
@@ -61,6 +62,6 @@ namespace uk.co.nfocus6.BDDproject.POM
             _scroll.Click(); //click on main body
             _scroll.SendKeys(Keys.Down+Keys.Down+Keys.Down);
         }*/
-        
+
     }
 }

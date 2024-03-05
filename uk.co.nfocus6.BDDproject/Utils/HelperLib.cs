@@ -31,7 +31,7 @@ namespace uk.co.nfocus6.BDDproject.Utils
             javaScriptDriver?.ExecuteScript("arguments[0].scrollIntoView()", item);
         }
 
-        public static void StaticTakeScreenshot(IWebDriver driver, By locator, string fileName)
+        public static void TakeScreenshot(IWebDriver driver, By locator, string fileName)
         {
             IWebElement foundElement = driver.FindElement(locator);
             ScrollUntilElement(driver, foundElement); //scroll until desired element
@@ -46,6 +46,21 @@ namespace uk.co.nfocus6.BDDproject.Utils
             screenshot.SaveAsFile(newPath); //saves in Project_Screenshots folder 
                                                       
         }
+
+        public static void StaticTakeScreenshot(IWebDriver driver, IWebElement element, string fileName)
+        {
+            ScrollUntilElement(driver, element);
+            ITakesScreenshot screenshotElement = driver as ITakesScreenshot;
+            Screenshot screenshot = screenshotElement.GetScreenshot();
+
+            string projectDirectory = Directory.GetCurrentDirectory(); //gets the path of the directory of project
+            //C:\Users\TahaChaudhry\source\repos\uk.co.nfocus.ecommerceproject\uk.co.nfocus.ecommerceproject\bin\Debug\net6.0
+
+            string newPath = Path.Combine(projectDirectory, @"..\..\..\Project_Screenshots\" + $"{fileName}.png");
+
+            screenshot.SaveAsFile(newPath); //saves in Project_Screenshots folder 
+        }
+
 
 
         public static decimal ConvertToDecimal(IWebElement theValue) //converts captured string to decimal

@@ -64,7 +64,6 @@ namespace uk.co.nfocus6.BDDproject.POM
            
             try
             {
-                //HelperLib.StaticWaitForElement(_driver, By.LinkText("Log out"));
                 if(_logoutLink.Displayed)
                 {
                     return true; //if logged in 
@@ -76,6 +75,7 @@ namespace uk.co.nfocus6.BDDproject.POM
 
                 //do nothing 
             }
+            HelperLib.StaticTakeScreenshot(_driver, _headingText, "loggedIn_status");
 
             return false;
         }

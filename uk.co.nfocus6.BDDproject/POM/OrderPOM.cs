@@ -28,6 +28,7 @@ namespace uk.co.nfocus6.BDDproject.POM
         public string GetOrderTable()
         {
             string orderTableText = _orderTable.Text; //text of the table
+            HelperLib.StaticTakeScreenshot(_driver, _orderTable, "order_table");
             return orderTableText;
         }
     }

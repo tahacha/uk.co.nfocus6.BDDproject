@@ -97,7 +97,7 @@ namespace uk.co.nfocus6.BDDproject.POM
 
         public string GetOrderNo()
         {
-            //HelperLib.StaticTakeScreenshot(_driver, By.CssSelector(".woocommerce-order-overview__order > strong"), "order_summary"); //screenshot 
+            HelperLib.StaticTakeScreenshot(_driver, _orderNo, "order_summary"); //screenshot of summary
             return _orderNo.Text;
         }
     }
