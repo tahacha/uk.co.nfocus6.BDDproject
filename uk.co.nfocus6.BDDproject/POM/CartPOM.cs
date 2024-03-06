@@ -82,16 +82,16 @@ namespace uk.co.nfocus6.BDDproject.POM
                 if(_cartDiscount.Displayed)
                 {
                     string couponText = _cartDiscount.Text;
-                    HelperLib.StaticTakeScreenshot(_driver, _cartDiscount, "coupon_status");
+                    HelperLib.StaticTakeScreenshot(_driver, _cartDiscount, "coupon_status", true);
                     return couponText;
                 }
 
             }
             catch (Exception)
             {
-                //do nothing
+                HelperLib.StaticTakeScreenshot(_driver, _bodyText, "coupon_status");
             }
-            HelperLib.StaticTakeScreenshot(_driver, _cartDiscount, "coupon_status");
+            
             return "coupon invalid";
              
         }

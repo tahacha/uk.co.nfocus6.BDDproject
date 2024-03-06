@@ -50,7 +50,7 @@ namespace uk.co.nfocus6.BDDproject.POM
 
         public void ViewCart()
         {
-            HelperLib.StaticTakeScreenshot(_driver, _viewCart, "item_added_to_cart");
+            HelperLib.StaticTakeScreenshot(_driver, _viewCart, "item_added_to_cart", false);
             _viewCart.Click();
         }
 

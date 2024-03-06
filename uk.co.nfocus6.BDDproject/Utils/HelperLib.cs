@@ -31,10 +31,15 @@ namespace uk.co.nfocus6.BDDproject.Utils
             javaScriptDriver?.ExecuteScript("arguments[0].scrollIntoView()", item);
         }
 
-        public static void TakeScreenshot(IWebDriver driver, By locator, string fileName)
+        public static void TakeScreenshot(IWebDriver driver, By locator, string fileName, bool  scroll = true)
         {
             IWebElement foundElement = driver.FindElement(locator);
-            ScrollUntilElement(driver, foundElement); //scroll until desired element
+
+            if(scroll)
+            {
+                ScrollUntilElement(driver, foundElement); //scroll until desired element
+            }
+           
             ITakesScreenshot screenshotElement = foundElement as ITakesScreenshot;
             Screenshot screenshot = screenshotElement.GetScreenshot(); //
 
@@ -47,9 +52,13 @@ namespace uk.co.nfocus6.BDDproject.Utils
                                                       
         }
 
-        public static void StaticTakeScreenshot(IWebDriver driver, IWebElement element, string fileName)
+        public static void StaticTakeScreenshot(IWebDriver driver, IWebElement element, string fileName, bool scroll = false)
         {
-            ScrollUntilElement(driver, element);
+            if (scroll)
+            {
+                ScrollUntilElement(driver, element); //scroll until desired element
+            }
+
             ITakesScreenshot screenshotElement = driver as ITakesScreenshot;
             Screenshot screenshot = screenshotElement.GetScreenshot();
 
