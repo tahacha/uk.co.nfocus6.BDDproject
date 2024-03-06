@@ -18,7 +18,7 @@ namespace uk.co.nfocus6.BDDproject.POM
         public MyAccountPOM(IWebDriver driver) //constructor that takes in a driver from the test case
         {
             this._driver = driver;
-            string headingText = _header.Text;
+            string headingText = _header.Text; //wait but also grabs text
             Assert.That(headingText, Does.Contain("My account"), "Not viewing My account page"); //checks to see if the current page is My account
             Console.WriteLine("View My Account Page");
         }

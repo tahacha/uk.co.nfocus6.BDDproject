@@ -17,10 +17,12 @@ namespace uk.co.nfocus6.BDDproject.Utils
     {
         private static IWebDriver _driver;
         private readonly ScenarioContext _scenarioContext;
+        private readonly Wrapper _wrapper;
 
-        public Hooks(ScenarioContext scenarioContext)
+        public Hooks(ScenarioContext scenarioContext, Wrapper wrapper)
         {
             _scenarioContext = scenarioContext;
+            _wrapper = wrapper;
         }
 
         [Before("@GUI")]
@@ -59,6 +61,7 @@ namespace uk.co.nfocus6.BDDproject.Utils
                 Assert.Fail(); //calls teardown since assertion failed
             }
             _scenarioContext["theDriver"] = _driver; //stores driver in _scenarioContext
+            _wrapper.Driver = _driver;
 
             //Home page of ecommerce site
             HomePOM home = new HomePOM(_driver);
@@ -83,7 +86,8 @@ namespace uk.co.nfocus6.BDDproject.Utils
                 return;
             }
 
-            bool login = (bool)_scenarioContext["loggedIn"]; //check if user logged in 
+            //bool login = (bool)_scenarioContext["loggedIn"]; //check if user logged in 
+            bool login = _wrapper.LoggedIn;
             if (login)
             {
                 CheckCart(); //check if cart needs to be emptied

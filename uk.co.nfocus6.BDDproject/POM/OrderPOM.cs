@@ -15,8 +15,8 @@ namespace uk.co.nfocus6.BDDproject.POM
         public OrderPOM(IWebDriver driver)
         {
             this._driver = driver;
+            _orderTable.Click(); //wait
             string headingText = _headingText.Text;
-            _orderTable.Click();
             Assert.That(headingText, Does.Contain("Orders"), "Not viewing orders page"); //checks user is on orders page
             Console.WriteLine("Viewing Orders page");
         }

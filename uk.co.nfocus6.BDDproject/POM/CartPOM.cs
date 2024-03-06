@@ -18,7 +18,7 @@ namespace uk.co.nfocus6.BDDproject.POM
         public CartPOM(IWebDriver driver) //constructor 
         {
             this._driver = driver;
-            string headingText = _header.Text;
+            string headingText = _header.Text; //wait but also grabs text
             Assert.That(headingText, Does.Contain("Cart"), "Not viewing the cart"); //check on cart oage 
             
         }

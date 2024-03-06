@@ -15,9 +15,9 @@ namespace uk.co.nfocus6.BDDproject.POM
         public ShopPOM(IWebDriver driver)
         {
             this._driver = driver;
+            _orderBy.Click(); //wait
             string headingText = _headingText.Text;
             //HelperLib.StaticWaitForElement(_driver, By.Name("orderby")); //waits for dropdown selection
-            _orderBy.Click();
             Assert.That(headingText, Does.Contain("Shop")); //checks that user is on shop page
             Console.WriteLine("Viewing shop page");
         }

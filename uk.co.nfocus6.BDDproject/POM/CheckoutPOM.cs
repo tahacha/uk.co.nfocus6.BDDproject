@@ -15,8 +15,8 @@ namespace uk.co.nfocus6.BDDproject.POM
         public CheckoutPOM(IWebDriver driver)
         {
             this._driver = driver;
-            string headingText = _headingText.Text;
             _firstName.Click(); //wait
+            string headingText = _headingText.Text;
             Assert.That(headingText, Does.Contain("Checkout"), "Not viewing checkout page"); //checks if user is on checkout page
             Console.WriteLine("Viewing checkout page"); 
 

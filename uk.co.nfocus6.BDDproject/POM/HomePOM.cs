@@ -18,9 +18,9 @@ namespace uk.co.nfocus6.BDDproject.POM
         public HomePOM(IWebDriver driver)
         {
             this._driver = driver;
+            _body.Click();
             string headingText = _headingText.Text;
             //HelperLib.StaticWaitForElement(_driver, By.LinkText("nFocus Shop")); //waits for page to load
-            _body.Click();
             Assert.That(headingText, Does.Contain("Welcome")); //checks to see if it's the home page
             Console.WriteLine("Viewing home page");
         }
