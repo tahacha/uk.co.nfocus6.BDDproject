@@ -11,20 +11,19 @@ namespace uk.co.nfocus6.BDDproject.Utils
     internal static class HelperLib
     {
         
-        public static void StaticWaitForElement(IWebDriver driver, By locator, int timeoutInSeconds = 5)
+        public static void StaticWaitForElement(IWebDriver driver, By locator, int timeoutInSeconds = 5) //wait
         {
             WebDriverWait myWait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeoutInSeconds));
             myWait.Until(drv => drv.FindElement(locator).Displayed);
         }
         
-        public static IWebElement WaitForElement(IWebDriver driver, By locator, int timeoutInSeconds = 5)
+        public static IWebElement WaitForElement(IWebDriver driver, By locator, int timeoutInSeconds = 5) //wait returns desired IWebElement
         {
             WebDriverWait myWait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeoutInSeconds));
             myWait.Until(drv => drv.FindElement(locator).Displayed);
             IWebElement foundElement = driver.FindElement(locator);
             return foundElement;
         }
-
         public static void ScrollUntilElement(IWebDriver driver, IWebElement item) //java script to scroll until certain element is in view 
         {
             IJavaScriptExecutor? javaScriptDriver = driver as IJavaScriptExecutor;

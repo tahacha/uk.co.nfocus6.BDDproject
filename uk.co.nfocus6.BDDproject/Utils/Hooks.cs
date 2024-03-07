@@ -16,12 +16,10 @@ namespace uk.co.nfocus6.BDDproject.Utils
     public class Hooks
     {
         private static IWebDriver? _driver;
-        private readonly ScenarioContext _scenarioContext;
         private readonly Wrapper _wrapper;
 
-        public Hooks(ScenarioContext scenarioContext, Wrapper wrapper)
+        public Hooks(Wrapper wrapper)
         {
-            _scenarioContext = scenarioContext;
             _wrapper = wrapper;
         }
 
@@ -60,7 +58,6 @@ namespace uk.co.nfocus6.BDDproject.Utils
                 Console.WriteLine(e.Message);
                 Assert.Fail(); //calls teardown since assertion failed
             }
-            _scenarioContext["theDriver"] = _driver; //stores driver in _scenarioContext
             _wrapper.Driver = _driver;
 
             //Home page of ecommerce site
@@ -86,7 +83,6 @@ namespace uk.co.nfocus6.BDDproject.Utils
                 return;
             }
 
-            //bool login = (bool)_scenarioContext["loggedIn"]; //check if user logged in 
             bool login = _wrapper.LoggedIn;
             if (login)
             {

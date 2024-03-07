@@ -16,17 +16,13 @@ namespace uk.co.nfocus6.BDDproject.StepDefinitions
     [Binding]
     public class CartCheckoutStepDefinitions
     {
-        private readonly ScenarioContext _scenarioContext;
         private readonly Wrapper _wrapper;
         private IWebDriver _driver;
 
-        public CartCheckoutStepDefinitions(ScenarioContext scenarioContext, Wrapper wrapper)
+        public CartCheckoutStepDefinitions(Wrapper wrapper)
         {
-            _scenarioContext = scenarioContext;
-            //this._driver = (IWebDriver)_scenarioContext["theDriver"];
             _wrapper = wrapper;
             this._driver = _wrapper.Driver;
-
         }
         [Given(@"I am logged in to the ecommerce site")]
         public void GivenIAmLoggedInToTheEcommerceSite()
@@ -54,7 +50,6 @@ namespace uk.co.nfocus6.BDDproject.StepDefinitions
 
             //check to see if logged in
             bool loggedIn = myAccount.SuccessfulLogin();
-            _scenarioContext["loggedIn"] = loggedIn; //boolean of whether logged in or not 
             _wrapper.LoggedIn = loggedIn;
             Assert.That(myAccount.SuccessfulLogin() == true, "Incorrect User Credentials");
             Console.WriteLine("Logged In");
@@ -156,7 +151,6 @@ namespace uk.co.nfocus6.BDDproject.StepDefinitions
             checkout.ClickPlaceOrder();
             string orderNo = checkout.GetOrderNo(); 
             Console.WriteLine("Order Placed, Order No: " + "#" + orderNo); //writes order no to console
-            _scenarioContext["orderNo"] = orderNo;
             _wrapper.OrderNumber = orderNo;
         }
 
@@ -174,7 +168,6 @@ namespace uk.co.nfocus6.BDDproject.StepDefinitions
             OrderPOM orders = new OrderPOM(_driver);
             
             string orderTable = orders.GetOrderTable(); //table text
-            //string orderNum = (string)_scenarioContext["orderNo"];
             string orderNum = _wrapper.OrderNumber;
             Assert.That(orderTable, Does.Contain(orderNum), "Order not in table");
         }
