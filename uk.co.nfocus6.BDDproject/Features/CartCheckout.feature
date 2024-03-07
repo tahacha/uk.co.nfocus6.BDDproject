@@ -4,9 +4,9 @@ Feature: EcommerceCartCheckoutFunctionality
 A short summary of the feature
 Background: 
 Given I am logged in to the ecommerce site 
-And I have added a 'Cap' to my cart 
+And I have added a 'Belt' to my cart 
 
-@CheckDiscount
+@CheckDiscount 
 Scenario: Checking Discount Applied
 	When I input the coupon '<coupon>' and click apply
 	Then A discount of <discount>% is applied to my cart

@@ -69,7 +69,6 @@ namespace uk.co.nfocus6.BDDproject.StepDefinitions
             Console.WriteLine("Item added to cart");
 
             //navigates to cart
-            //nav.ViewCart();
             shop.ViewCart();
         }
 

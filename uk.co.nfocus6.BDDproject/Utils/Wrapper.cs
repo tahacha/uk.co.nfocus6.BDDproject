@@ -11,7 +11,7 @@ namespace uk.co.nfocus6.BDDproject.Utils
     {
         private IWebDriver? _driver;
         private bool _loggedIn;
-        private string? _orderNumber;
+        private string _orderNumber = "";
         public IWebDriver Driver { get => _driver!; set => _driver = value; }
 
         public bool LoggedIn { get => _loggedIn; set => _loggedIn = value; }

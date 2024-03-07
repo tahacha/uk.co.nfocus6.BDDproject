@@ -83,7 +83,7 @@ namespace uk.co.nfocus6.BDDproject.Features
 testRunner.Given("I am logged in to the ecommerce site", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 7
-testRunner.And("I have added a \'Cap\' to my cart", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("I have added a \'Belt\' to my cart", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
         }
         
