@@ -36,7 +36,7 @@ namespace uk.co.nfocus6.BDDproject.POM
                 _accountLink.Click(); //navigates to my account page
 
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 _accountLink.Click(); //navigates to my account page, avoid click interception
             }
@@ -49,7 +49,7 @@ namespace uk.co.nfocus6.BDDproject.POM
             {
                 _cartLink.Click(); //navigates to cart page 
             }
-            catch (Exception e)
+            catch (Exception)
             {
 
                 _cartLink.Click(); //navigates to cart page, avoid click interception

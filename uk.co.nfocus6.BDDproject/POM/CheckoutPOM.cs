@@ -82,7 +82,7 @@ namespace uk.co.nfocus6.BDDproject.POM
             {
                 _paymentByCheque.Click(); //clicks payment by cheque 
             }
-            catch (Exception e)
+            catch (Exception)
             {
 
                 _paymentByCheque.Click(); //clicks payment by cheque if fails by stale element

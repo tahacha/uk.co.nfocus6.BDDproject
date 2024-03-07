@@ -4,14 +4,13 @@ Feature: EcommerceCartCheckoutFunctionality
 A short summary of the feature
 Background: 
 Given I am logged in to the ecommerce site 
-And I have added a 'Polo' to my cart 
+And I have added a 'Cap' to my cart 
 
 @CheckDiscount
 Scenario: Checking Discount Applied
 	When I input the coupon '<coupon>' and click apply
 	Then A discount of <discount>% is applied to my cart
 	And  The order total updates accordingly 
-	#maybe add a table, for option for nfocus coupon.
 Examples:
 	| coupon    | discount |
 	| edgewords | 10       |

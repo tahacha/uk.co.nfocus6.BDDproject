@@ -122,21 +122,6 @@ namespace uk.co.nfocus6.BDDproject.POM
         {
             return _orderTotalDecimal;
         }
-        
-        /*
-        public string CheckTotal()
-        {
-            
-            decimal calculatedTotal = (_originalTotalDecimal + (decimal)3.95) - _checkCouponDiscountDecimal;
-
-            if (calculatedTotal == _orderTotalDecimal)
-            {
-                return "Correct order total";
-            }
-
-            return "Wrong order total"; //returns if order total is not correct
-
-        }*/
 
         public decimal GetCalculatedTotal()
         {
@@ -144,8 +129,7 @@ namespace uk.co.nfocus6.BDDproject.POM
             return calculatedTotal;
         }
 
-        
-
+       
         public void RemoveItem()
         {
             _removeFromCart.Click(); //removes from cart

@@ -15,7 +15,7 @@ namespace uk.co.nfocus6.BDDproject.Utils
     [Binding]
     public class Hooks
     {
-        private static IWebDriver _driver;
+        private static IWebDriver? _driver;
         private readonly ScenarioContext _scenarioContext;
         private readonly Wrapper _wrapper;
 
@@ -28,7 +28,7 @@ namespace uk.co.nfocus6.BDDproject.Utils
         [Before("@GUI")]
         public void SetUp()
         {
-            string browser = Environment.GetEnvironmentVariable("BROWSER");
+            string? browser = Environment.GetEnvironmentVariable("BROWSER");
 
             switch (browser) //switchs type of driver depending on "browser"
             {
@@ -47,7 +47,7 @@ namespace uk.co.nfocus6.BDDproject.Utils
                     break;
             }
 
-            string startPage = TestContext.Parameters["WebAppURL"]; //fetch URL from run settings
+            string? startPage = TestContext.Parameters["WebAppURL"]; //fetch URL from run settings
 
             //once browser set, navigate to this page
             try
@@ -78,11 +78,11 @@ namespace uk.co.nfocus6.BDDproject.Utils
         [After("@GUI")]
         public void TearDown()
         {
-            string startPage = TestContext.Parameters["WebAppURL"];
+            string? startPage = TestContext.Parameters["WebAppURL"];
             if(startPage == string.Empty)
             {
                 Console.WriteLine("Driver closed to missing URL, please check WebAppURL");
-                _driver.Quit(); //closes driver 
+                _driver!.Quit(); //closes driver 
                 return;
             }
 
@@ -93,34 +93,34 @@ namespace uk.co.nfocus6.BDDproject.Utils
                 CheckCart(); //check if cart needs to be emptied
                 Logout();
                 Console.WriteLine("Logged out");
-                _driver.Quit();
+                _driver!.Quit();
             }
 
             else
             {
                 Console.WriteLine("User not logged in, logout process not needed");
-                _driver.Quit();
+                _driver!.Quit();
             }
             
         }
         private void CheckCart()
         {
             //navigate to cart
-            NavBarPOM nav = new NavBarPOM(_driver);
+            NavBarPOM nav = new NavBarPOM(_driver!);
             nav.ViewCart();
 
             //check cart
-            CartPOM cart = new CartPOM(_driver);
+            CartPOM cart = new CartPOM(_driver!);
             cart.EmptyCart();
         }
         private void Logout()
         {
             //navigate to the my account page
-            NavBarPOM nav = new NavBarPOM(_driver);
+            NavBarPOM nav = new NavBarPOM(_driver!);
             nav.ViewMyAccount();
 
             //clicks the logout button
-            MyAccountPOM myAccount = new MyAccountPOM(_driver);
+            MyAccountPOM myAccount = new MyAccountPOM(_driver!);
             myAccount.ClickLogout();
         }
 

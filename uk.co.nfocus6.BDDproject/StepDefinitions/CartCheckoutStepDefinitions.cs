@@ -33,8 +33,8 @@ namespace uk.co.nfocus6.BDDproject.StepDefinitions
         {
 
             MyAccountPOM myAccount = new MyAccountPOM(_driver);
-            string username = Environment.GetEnvironmentVariable("Secret_Username");
-            string password = Environment.GetEnvironmentVariable("Secret_Password");
+            string? username = Environment.GetEnvironmentVariable("Secret_Username");
+            string? password = Environment.GetEnvironmentVariable("Secret_Password");
 
             //null
             if (username == string.Empty || password == string.Empty)
@@ -44,9 +44,9 @@ namespace uk.co.nfocus6.BDDproject.StepDefinitions
             }
 
             //enter username and password 
-            myAccount.SetUsername(username);
+            myAccount.SetUsername(username!);
             Console.WriteLine("Username entered");
-            myAccount.SetPassword(password);
+            myAccount.SetPassword(password!);
             Console.WriteLine("Password entered");
 
             //click login
@@ -132,7 +132,7 @@ namespace uk.co.nfocus6.BDDproject.StepDefinitions
         {
             //fill in details and press payment by cheque
             //checkout page 
-            CustomerDetails theCustomer = new CustomerDetails("penguin", "arctic", "1 Icy Street", "Icy", "SG13 8TN", "123456789"); //instantiates a new object of the CustomerDetails class
+            CustomerDetails theCustomer = new CustomerDetails("Smith", "Jones", "1 Oxford Street", "London", "W1B 3AG", "123456789"); //instantiates a new object of the CustomerDetails class
 
             //enter all details
             CheckoutPOM checkout = new CheckoutPOM(_driver);

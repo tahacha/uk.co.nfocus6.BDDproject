@@ -26,7 +26,6 @@ namespace uk.co.nfocus6.BDDproject.POM
         //locators
         private IWebElement _headingText => HelperLib.WaitForElement(_driver, By.TagName("h1"));
         private IWebElement _usernameField => HelperLib.WaitForElement(_driver, By.CssSelector("#username"));
-        //private IWebElement _usernameField => _driver.FindElement(By.CssSelector("#username")); //locates username field
         private IWebElement _passwordField => HelperLib.WaitForElement(_driver, By.CssSelector("#password"));
         private IWebElement _loginButton => HelperLib.WaitForElement(_driver, By.Name("login")); //locates log in button
 
@@ -72,7 +71,7 @@ namespace uk.co.nfocus6.BDDproject.POM
                 }
 
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 HelperLib.StaticTakeScreenshot(_driver, _headingText, "loggedIn_status");
                 //do nothing 
