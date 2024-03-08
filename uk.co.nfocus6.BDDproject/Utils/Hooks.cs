@@ -103,10 +103,21 @@ namespace uk.co.nfocus6.BDDproject.Utils
         {
             //navigate to cart
             NavBarPOM nav = new NavBarPOM(_driver!);
-            nav.ViewCart();
-            Console.WriteLine("Cart clicked from nav");
             
-           
+            
+            //could implement try catch for click interception if scroll doesn't work
+            try
+            {
+                nav.ViewCart();
+                Console.WriteLine("Cart clicked from nav");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                Console.WriteLine("Trying to click Cart again");
+                nav.ViewCart();
+            }
+
             //check cart
             CartPOM cart = new CartPOM(_driver!);
             cart.EmptyCart();
@@ -115,8 +126,19 @@ namespace uk.co.nfocus6.BDDproject.Utils
         {
             //navigate to the my account page
             NavBarPOM nav = new NavBarPOM(_driver!);
-            nav.ViewMyAccount();
-            Console.WriteLine("My account clicked from nav");
+            
+            //try catch for click interception if scroll doesn't prevent ClickInterception
+            try
+            {
+                nav.ViewMyAccount();
+                Console.WriteLine("My account clicked from nav");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                Console.WriteLine("Trying to click My account again");
+                nav.ViewMyAccount();
+            }
             
 
             //clicks the logout link

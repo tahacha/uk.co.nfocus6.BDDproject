@@ -77,27 +77,13 @@ namespace uk.co.nfocus6.BDDproject.POM
 
         public void ClickChequePayment()
         {
-            try
-            {
-                _paymentByCheque.Click();
-            }
-            catch (Exception)
-            {
-                _paymentByCheque.Click(); //try again
-            }
+            _paymentByCheque.Click();
             
         }
 
         public void ClickPlaceOrder()
         {
-            try
-            {
-                _placeOrder.Click();
-            }
-            catch (Exception) //stale element/click intercepted
-            {
-                _placeOrder.Click();
-            }
+            _placeOrder.Click();
         }
 
         public string GetOrderNo()

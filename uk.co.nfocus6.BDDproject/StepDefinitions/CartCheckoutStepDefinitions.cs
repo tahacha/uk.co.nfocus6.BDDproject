@@ -89,12 +89,11 @@ namespace uk.co.nfocus6.BDDproject.StepDefinitions
             CartPOM cart = new CartPOM(_driver);
             string couponApplied = cart.DiscountApplied();
             decimal discountAdded = cart.TheDiscount(); //actual discount applied
-            //decimal discountAddedPercent = decimal.Truncate(discountAdded * 100);
 
             Assert.Multiple(() =>
             {
                 Assert.That(couponApplied, Does.Contain("Coupon:"), "Discount not applied");
-                Assert.That(discountAdded == (decimal)discount, "Not a " + (decimal)discount + "% discount, it's a " + discountAdded + "% discount");
+                Assert.That(discountAdded == (decimal)discount, "Not a " + (decimal)discount + "% discount, it's a " + decimal.Truncate(discountAdded) + "% discount");
 
             });
             Console.WriteLine("Correct discount applied");
@@ -140,7 +139,15 @@ namespace uk.co.nfocus6.BDDproject.StepDefinitions
             checkout.EnterPhone(theCustomer.GetPhone());
             Console.WriteLine("Customer details entered");
 
-            checkout.ClickChequePayment(); //clicks cheque payment
+            try
+            {
+                checkout.ClickChequePayment(); //clicks cheque payment
+            }
+            catch (Exception)
+            {
+                checkout.ClickChequePayment(); //clicks cheque payment
+            }
+            
         }
 
         [Then(@"I can place my order and see a summary of my order including an order number")]
@@ -148,11 +155,19 @@ namespace uk.co.nfocus6.BDDproject.StepDefinitions
         {
             //places order and captures the order number 
             CheckoutPOM checkout = new CheckoutPOM(_driver);
-            checkout.ClickChequePayment(); 
-            checkout.ClickPlaceOrder();
+            try
+            {
+                checkout.ClickPlaceOrder();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                Console.WriteLine("Clicking place order again");
+                checkout.ClickPlaceOrder();
+            }
             string orderNo = checkout.GetOrderNo(); 
             Console.WriteLine("Order Placed, Order No: " + "#" + orderNo); //writes order no to console
-            _wrapper.OrderNumber = orderNo;
+            _wrapper.OrderNumber = orderNo; //stores
         }
 
         [Then(@"Verify my order has been placed my checking the same order number appears on the orders page")]
@@ -169,7 +184,7 @@ namespace uk.co.nfocus6.BDDproject.StepDefinitions
             OrderPOM orders = new OrderPOM(_driver);
             
             string orderTable = orders.GetOrderTable(); //table text
-            string orderNum = _wrapper.OrderNumber;
+            string orderNum = _wrapper.OrderNumber; //get from wrapper
             Assert.That(orderTable, Does.Contain(orderNum), "Order not in table");
         }
 
