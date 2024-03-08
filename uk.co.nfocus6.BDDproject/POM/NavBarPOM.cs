@@ -16,6 +16,7 @@ namespace uk.co.nfocus6.BDDproject.POM
         {
             this._driver = driver;
             HelperLib.StaticWaitForElement(_driver, By.LinkText("Blog"));
+            HelperLib.ScrollUntilElement(_driver, _nameLink);
         }
 
         //locators
@@ -23,6 +24,7 @@ namespace uk.co.nfocus6.BDDproject.POM
         private IWebElement _accountLink => HelperLib.WaitForElement(_driver, By.LinkText("My account"));
 
         private IWebElement _cartLink => HelperLib.WaitForElement(_driver, By.LinkText("Cart"));
+        private IWebElement _nameLink => HelperLib.WaitForElement(_driver, By.LinkText("nFocus Shop"));
 
         //service methods
         public void ViewShop()
@@ -32,12 +34,16 @@ namespace uk.co.nfocus6.BDDproject.POM
 
         public void ViewMyAccount()
         {
+            //HelperLib.ScrollUntilElement(_driver, _accountLink);
             _accountLink.Click();
         }
 
         public void ViewCart()
         {
+            //HelperLib.ScrollUntilElement(_driver, _cartLink);
             _cartLink.Click();
         }
+
+        
     }
 }

@@ -103,17 +103,10 @@ namespace uk.co.nfocus6.BDDproject.Utils
         {
             //navigate to cart
             NavBarPOM nav = new NavBarPOM(_driver!);
-            try
-            {
-                nav.ViewCart();
-            }
-            catch (Exception e) //click intercepted even when scrolling to element
-            {
-                Console.WriteLine(e.Message);
-                nav.ViewCart();
-                Console.WriteLine("Nav - Cart clicked again");
-            }
+            nav.ViewCart();
+            Console.WriteLine("Cart clicked from nav");
             
+           
             //check cart
             CartPOM cart = new CartPOM(_driver!);
             cart.EmptyCart();
@@ -122,16 +115,8 @@ namespace uk.co.nfocus6.BDDproject.Utils
         {
             //navigate to the my account page
             NavBarPOM nav = new NavBarPOM(_driver!);
-            try
-            {
-                nav.ViewMyAccount();
-            }
-            catch (Exception e) //click intercepted even when scrolling to element 
-            {
-                Console.WriteLine(e.Message);
-                nav.ViewCart();
-                Console.WriteLine("Nav - My account clicked again");
-            }
+            nav.ViewMyAccount();
+            Console.WriteLine("My account clicked from nav");
             
 
             //clicks the logout link

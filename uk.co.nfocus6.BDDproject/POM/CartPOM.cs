@@ -86,7 +86,7 @@ namespace uk.co.nfocus6.BDDproject.POM
                 if(_cartDiscount.Displayed)
                 {
                     string couponText = _cartDiscount.Text;
-                    HelperLib.StaticTakeScreenshot(_driver, _cartDiscount, "coupon_status", true);
+                    HelperLib.StaticTakeScreenshot(_driver, _cartDiscount, "coupon_status");
                     return couponText;
                 }
 
@@ -137,11 +137,12 @@ namespace uk.co.nfocus6.BDDproject.POM
         public void EmptyCart()
         {
             string bodyText = _bodyText.Text;
-
+            //clicks x
             if (bodyText.Contains("Product"))
             {
                 RemoveItem();
             }
+
         }
 
         public void ReturnToShop()
