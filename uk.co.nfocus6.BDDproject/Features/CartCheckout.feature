@@ -4,7 +4,7 @@ Feature: EcommerceCartCheckoutFunctionality
 A short summary of the feature
 Background: 
 Given I am logged in to the ecommerce site 
-And I have added a 'Belt' to my cart 
+And I have added a 'Beanie' to my cart 
 
 @CheckDiscount 
 Scenario: Checking Discount Applied

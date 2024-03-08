@@ -27,40 +27,39 @@ namespace uk.co.nfocus6.BDDproject.POM
         public void ViewShop()
         {
             _shopLink.Click(); //navigates to shop page
+            Console.WriteLine("Nav Bar - Shop clicked");
         }
 
         public void ViewMyAccount()
         {
-            /*
             try
             {
-                _accountLink.Click(); //navigates to my account page
-
+                _accountLink.Click();
+                Console.WriteLine("Nav Bar - My Account clicked");
             }
-            catch (Exception)
+            catch (Exception) //click intercepted 
             {
-                _accountLink.Click(); //navigates to my account page, avoid click interception
+                Console.WriteLine("Nav Bar - My Account clicked failed, trying again");
+                _accountLink.Click();
+                Console.WriteLine("Nav Bar - My Account clicked");
             }
-            */
-            HelperLib.ScrollUntilElement(_driver, _accountLink);
-            _accountLink.Click();
             
         }
 
         public void ViewCart()
         {
-            /*
+            
             try
             {
-                _cartLink.Click(); //navigates to cart page 
+                _cartLink.Click();
+                Console.WriteLine("Nav Bar - Cart clicked");
             }
             catch (Exception)
             {
-
-                _cartLink.Click(); //navigates to cart page, avoid click interception
-            }*/
-            HelperLib.ScrollUntilElement(_driver, _cartLink);
-            _cartLink.Click();
+                Console.WriteLine("Nav Bar - Cart clicked failed, trying again");
+                _cartLink.Click();
+                Console.WriteLine("Nav Bar - Cart clicked");
+            }
         }
     }
 }

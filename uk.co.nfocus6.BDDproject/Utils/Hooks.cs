@@ -115,7 +115,7 @@ namespace uk.co.nfocus6.BDDproject.Utils
             NavBarPOM nav = new NavBarPOM(_driver!);
             nav.ViewMyAccount();
 
-            //clicks the logout button
+            //clicks the logout link
             MyAccountPOM myAccount = new MyAccountPOM(_driver!);
             myAccount.ClickLogout();
         }

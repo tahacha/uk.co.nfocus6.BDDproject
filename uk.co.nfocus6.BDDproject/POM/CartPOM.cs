@@ -31,6 +31,8 @@ namespace uk.co.nfocus6.BDDproject.POM
      
         private IWebElement _applyCoupon => HelperLib.WaitForElement(_driver, By.Name("apply_coupon"));
 
+        private IWebElement _couponSuccessMsg => HelperLib.WaitForElement(_driver, By.CssSelector(".woodcommerce-message"));
+        private IWebElement _couponErrorMsg => HelperLib.WaitForElement(_driver, By.CssSelector(".woodcommerce-error"));
         private IWebElement _checkCouponDiscount => HelperLib.WaitForElement(_driver, By.CssSelector(".cart-discount .woocommerce-Price-amount"));
         
         private IWebElement _orderTotal => HelperLib.WaitForElement(_driver, By.CssSelector("strong bdi"));
@@ -130,7 +132,7 @@ namespace uk.co.nfocus6.BDDproject.POM
         }
 
        
-        public void RemoveItem()
+        private void RemoveItem()
         {
             _removeFromCart.Click(); //removes from cart
         }
@@ -147,6 +149,7 @@ namespace uk.co.nfocus6.BDDproject.POM
             if (bodyText.Contains("Product"))
             {
                 RemoveItem();
+                _emptyCartMsg.Click(); //wait for message stating cart is empty
             }
         }
 
