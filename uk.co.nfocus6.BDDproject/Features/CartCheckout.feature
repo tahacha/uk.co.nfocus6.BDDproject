@@ -4,17 +4,17 @@ Feature: EcommerceCartCheckoutFunctionality
 A short summary of the feature
 Background: 
 Given I am logged in to the ecommerce site 
-And I have added a 'Beanie' to my cart 
+And I have added a 'Cap' to my cart 
 
 @CheckDiscount 
 Scenario: Checking Discount Applied
 	When I input the coupon '<coupon>' and click apply
 	Then A discount of <discount>% is applied to my cart
 	And  The order total updates accordingly 
-Examples:
-	| coupon    | discount |
-	| edgewords | 15       |
-	| nfocus    | 25       |
+Examples: 
+| coupon    | discount |
+| edgewords | 15       |
+| nfocus    | 25       |
 
 @CheckOrderNo
 Scenario: Checking The Order Has Been Placed

@@ -99,21 +99,40 @@ namespace uk.co.nfocus6.BDDproject.Utils
             }
             
         }
-        private void CheckCart()
+        private static void CheckCart()
         {
             //navigate to cart
             NavBarPOM nav = new NavBarPOM(_driver!);
-            nav.ViewCart();
-
+            try
+            {
+                nav.ViewCart();
+            }
+            catch (Exception e) //click intercepted even when scrolling to element
+            {
+                Console.WriteLine(e.Message);
+                nav.ViewCart();
+                Console.WriteLine("Nav - Cart clicked again");
+            }
+            
             //check cart
             CartPOM cart = new CartPOM(_driver!);
             cart.EmptyCart();
         }
-        private void Logout()
+        private static void Logout()
         {
             //navigate to the my account page
             NavBarPOM nav = new NavBarPOM(_driver!);
-            nav.ViewMyAccount();
+            try
+            {
+                nav.ViewMyAccount();
+            }
+            catch (Exception e) //click intercepted even when scrolling to element 
+            {
+                Console.WriteLine(e.Message);
+                nav.ViewCart();
+                Console.WriteLine("Nav - My account clicked again");
+            }
+            
 
             //clicks the logout link
             MyAccountPOM myAccount = new MyAccountPOM(_driver!);

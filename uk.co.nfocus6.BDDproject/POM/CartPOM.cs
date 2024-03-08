@@ -31,8 +31,8 @@ namespace uk.co.nfocus6.BDDproject.POM
      
         private IWebElement _applyCoupon => HelperLib.WaitForElement(_driver, By.Name("apply_coupon"));
 
-        private IWebElement _couponSuccessMsg => HelperLib.WaitForElement(_driver, By.CssSelector(".woodcommerce-message"));
-        private IWebElement _couponErrorMsg => HelperLib.WaitForElement(_driver, By.CssSelector(".woodcommerce-error"));
+        private IWebElement _couponSuccessMsg => HelperLib.WaitForElement(_driver, By.CssSelector(".woocommerce-message"));
+        private IWebElement _couponErrorMsg => HelperLib.WaitForElement(_driver, By.CssSelector(".woocommerce-error"));
         private IWebElement _checkCouponDiscount => HelperLib.WaitForElement(_driver, By.CssSelector(".cart-discount .woocommerce-Price-amount"));
         
         private IWebElement _orderTotal => HelperLib.WaitForElement(_driver, By.CssSelector("strong bdi"));
@@ -45,6 +45,8 @@ namespace uk.co.nfocus6.BDDproject.POM
 
         private IWebElement _cartDiscount => HelperLib.WaitForElement(_driver, By.CssSelector(".cart-discount > th"));
         private IWebElement _emptyCartMsg => HelperLib.WaitForElement(_driver, By.CssSelector(".cart-empty"));
+
+        private IWebElement _itemRemovedMsg => HelperLib.WaitForElement(_driver, By.CssSelector(".woocommerce-message"));
         private IWebElement _returnToShop => HelperLib.WaitForElement(_driver, By.LinkText("Return to shop"),10);
 
         private IWebElement _bodyText => HelperLib.WaitForElement(_driver, By.TagName("body"));
@@ -100,23 +102,13 @@ namespace uk.co.nfocus6.BDDproject.POM
 
         
 
-        public string CheckDiscount()
-        {
-            decimal originalWithDiscount = _originalTotalDecimal * (decimal)0.15; //calculates 15% of the original price
-
-            if (originalWithDiscount == _checkCouponDiscountDecimal) //compares to coupon discount listed
-            {
-                return "Right coupon";
-            }
-
-            return "Wrong coupon"; //returns if coupon discount is not right 
-        }
+      
 
         public decimal TheDiscount()
         {
             decimal orderTotalNoShipWithDiscount = _orderTotalDecimal - _shippingPriceDecimal;
             decimal discountApplied = (_originalTotalDecimal - orderTotalNoShipWithDiscount) / _originalTotalDecimal; //calculated percentage change
-            return discountApplied; //returns the discount decimal 
+            return discountApplied*100; //returns the discount decimal 
 
         }
 
@@ -149,7 +141,6 @@ namespace uk.co.nfocus6.BDDproject.POM
             if (bodyText.Contains("Product"))
             {
                 RemoveItem();
-                _emptyCartMsg.Click(); //wait for message stating cart is empty
             }
         }
 

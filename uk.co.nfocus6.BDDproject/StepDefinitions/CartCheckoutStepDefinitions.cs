@@ -89,16 +89,17 @@ namespace uk.co.nfocus6.BDDproject.StepDefinitions
             CartPOM cart = new CartPOM(_driver);
             string couponApplied = cart.DiscountApplied();
             decimal discountAdded = cart.TheDiscount(); //actual discount applied
-            decimal discountAddedPercent = Decimal.Truncate(discountAdded * 100);
+            //decimal discountAddedPercent = decimal.Truncate(discountAdded * 100);
 
             Assert.Multiple(() =>
             {
                 Assert.That(couponApplied, Does.Contain("Coupon:"), "Discount not applied");
-                Assert.That(discountAdded == (decimal)discount / 100, "Not a " + discount + "% discount, it's a " + discountAddedPercent + "% discount");
+                Assert.That(discountAdded == (decimal)discount, "Not a " + (decimal)discount + "% discount, it's a " + discountAdded + "% discount");
 
             });
             Console.WriteLine("Correct discount applied");
 
+            
         }
 
         [Then(@"The order total updates accordingly")]

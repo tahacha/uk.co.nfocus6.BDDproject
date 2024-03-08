@@ -16,6 +16,7 @@ namespace uk.co.nfocus6.BDDproject.Utils
 
         public bool LoggedIn { get => _loggedIn; set => _loggedIn = value; }
 
-        public string OrderNumber { get => _orderNumber!; set => _orderNumber = value; }
+        public string OrderNumber { get => _orderNumber; set => _orderNumber = value; }
+
     }
 }

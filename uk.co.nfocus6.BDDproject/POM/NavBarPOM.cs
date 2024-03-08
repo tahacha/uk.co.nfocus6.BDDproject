@@ -15,6 +15,7 @@ namespace uk.co.nfocus6.BDDproject.POM
         public NavBarPOM(IWebDriver driver)
         {
             this._driver = driver;
+            HelperLib.StaticWaitForElement(_driver, By.LinkText("Blog"));
         }
 
         //locators
@@ -27,39 +28,16 @@ namespace uk.co.nfocus6.BDDproject.POM
         public void ViewShop()
         {
             _shopLink.Click(); //navigates to shop page
-            Console.WriteLine("Nav Bar - Shop clicked");
         }
 
         public void ViewMyAccount()
         {
-            try
-            {
-                _accountLink.Click();
-                Console.WriteLine("Nav Bar - My Account clicked");
-            }
-            catch (Exception) //click intercepted 
-            {
-                Console.WriteLine("Nav Bar - My Account clicked failed, trying again");
-                _accountLink.Click();
-                Console.WriteLine("Nav Bar - My Account clicked");
-            }
-            
+            _accountLink.Click();
         }
 
         public void ViewCart()
         {
-            
-            try
-            {
-                _cartLink.Click();
-                Console.WriteLine("Nav Bar - Cart clicked");
-            }
-            catch (Exception)
-            {
-                Console.WriteLine("Nav Bar - Cart clicked failed, trying again");
-                _cartLink.Click();
-                Console.WriteLine("Nav Bar - Cart clicked");
-            }
+            _cartLink.Click();
         }
     }
 }
