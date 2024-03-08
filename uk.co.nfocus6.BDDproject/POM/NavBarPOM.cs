@@ -31,6 +31,7 @@ namespace uk.co.nfocus6.BDDproject.POM
 
         public void ViewMyAccount()
         {
+            /*
             try
             {
                 _accountLink.Click(); //navigates to my account page
@@ -40,11 +41,15 @@ namespace uk.co.nfocus6.BDDproject.POM
             {
                 _accountLink.Click(); //navigates to my account page, avoid click interception
             }
+            */
+            HelperLib.ScrollUntilElement(_driver, _accountLink);
+            _accountLink.Click();
             
         }
 
         public void ViewCart()
         {
+            /*
             try
             {
                 _cartLink.Click(); //navigates to cart page 
@@ -53,7 +58,9 @@ namespace uk.co.nfocus6.BDDproject.POM
             {
 
                 _cartLink.Click(); //navigates to cart page, avoid click interception
-            }
+            }*/
+            HelperLib.ScrollUntilElement(_driver, _cartLink);
+            _cartLink.Click();
         }
     }
 }

@@ -24,7 +24,7 @@ namespace uk.co.nfocus6.BDDproject.Utils
             IWebElement foundElement = driver.FindElement(locator);
             return foundElement;
         }
-        private static void ScrollUntilElement(IWebDriver driver, IWebElement item) //java script to scroll until certain element is in view 
+        public static void ScrollUntilElement(IWebDriver driver, IWebElement item) //java script to scroll until certain element is in view 
         {
             IJavaScriptExecutor? javaScriptDriver = driver as IJavaScriptExecutor;
             javaScriptDriver?.ExecuteScript("arguments[0].scrollIntoView()", item);
