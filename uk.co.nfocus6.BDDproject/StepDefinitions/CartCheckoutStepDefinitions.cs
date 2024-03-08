@@ -85,15 +85,16 @@ namespace uk.co.nfocus6.BDDproject.StepDefinitions
         [Then(@"A discount of (.*)% is applied to my cart")]
         public void ThenADiscountOfIsAppliedToMyCart(int discount)
         {
-            //assert disocunt applied and it's 15% discount
+            //assert discount applied and it's 15% discount
             CartPOM cart = new CartPOM(_driver);
             string couponApplied = cart.DiscountApplied();
-            decimal discountAdded = cart.TheDiscount();
+            decimal discountAdded = cart.TheDiscount(); //actual discount applied
+            decimal discountAddedPercent = Decimal.Truncate(discountAdded * 100);
 
             Assert.Multiple(() =>
             {
                 Assert.That(couponApplied, Does.Contain("Coupon:"), "Discount not applied");
-                Assert.That(discountAdded == (decimal)discount / 100, "Not a " + discount + "% discount, it's a " + discountAdded * 100 + "% discount");
+                Assert.That(discountAdded == (decimal)discount / 100, "Not a " + discount + "% discount, it's a " + discountAddedPercent + "% discount");
 
             });
             Console.WriteLine("Correct discount applied");

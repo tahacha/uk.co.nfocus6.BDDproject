@@ -13,7 +13,7 @@ Scenario: Checking Discount Applied
 	And  The order total updates accordingly 
 Examples:
 	| coupon    | discount |
-	| edgewords | 10       |
+	| edgewords | 15       |
 	| nfocus    | 25       |
 
 @CheckOrderNo

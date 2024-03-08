@@ -90,7 +90,7 @@ testRunner.And("I have added a \'Belt\' to my cart", ((string)(null)), ((TechTal
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Checking Discount Applied")]
         [NUnit.Framework.CategoryAttribute("CheckDiscount")]
-        [NUnit.Framework.TestCaseAttribute("edgewords", "10", null)]
+        [NUnit.Framework.TestCaseAttribute("edgewords", "15", null)]
         [NUnit.Framework.TestCaseAttribute("nfocus", "25", null)]
         public void CheckingDiscountApplied(string coupon, string discount, string[] exampleTags)
         {
