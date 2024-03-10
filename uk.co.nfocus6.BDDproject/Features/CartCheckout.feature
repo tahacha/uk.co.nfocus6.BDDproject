@@ -1,7 +1,7 @@
 ﻿@GUI
 Feature: EcommerceCartCheckoutFunctionality
 In order to promote the ecommerce site
-the cart and checkout functionality 
+checkout functionality 
 must be tested
 
 Background: 
@@ -12,11 +12,7 @@ And I have added a 'Tshirt' to my cart
 Scenario: Checking Discount Applied
 	When I input the coupon 'edgewords' and click apply
 	Then A discount of 15% is applied to my cart
-	And  The order total updates accordingly 
-#Examples: 
-#| coupon    | discount |
-#| edgewords | 15       |
-#| nfocus    | 25       |
+	And  The order total updates accordingly
 
 @CheckOrderNo
 Scenario: Checking The Order Has Been Placed
