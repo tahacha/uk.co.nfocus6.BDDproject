@@ -17,7 +17,6 @@ namespace uk.co.nfocus6.BDDproject.POM
             this._driver = driver;
             _orderBy.Click(); //wait
             string headingText = _headingText.Text;
-            //HelperLib.StaticWaitForElement(_driver, By.Name("orderby")); //waits for dropdown selection
             Assert.That(headingText, Does.Contain("Shop")); //checks that user is on shop page
             Console.WriteLine("Viewing shop page");
         }
@@ -34,7 +33,7 @@ namespace uk.co.nfocus6.BDDproject.POM
         private IWebElement _orderBy => HelperLib.WaitForElement(_driver, By.Name("orderby"));
         public bool AddItemToCart(string item)
         {
-            _itemName = item; //places the item that user wants into _itemName
+            _itemName = item; //places the item that user wants to add to cart into _itemName
             try
             {
                 _theItem.Click();
@@ -44,7 +43,7 @@ namespace uk.co.nfocus6.BDDproject.POM
             {
 
             }
-            return false;
+            return false; //item doesn't exist 
 
         }
 
@@ -53,15 +52,6 @@ namespace uk.co.nfocus6.BDDproject.POM
             HelperLib.StaticTakeScreenshot(_driver, _viewCart, "item_added_to_cart", false);
             _viewCart.Click();
         }
-
-
-        /* Works but causes problems with other methods
-         * 
-        public void ScrollShopPage()
-        {
-            _scroll.Click(); //click on main body
-            _scroll.SendKeys(Keys.Down+Keys.Down+Keys.Down);
-        }*/
 
     }
 }

@@ -70,6 +70,7 @@ namespace uk.co.nfocus6.BDDproject.StepDefinitions
 
             //navigates to cart
             shop.ViewCart();
+            Console.WriteLine("View cart clicked");
         }
 
         [When(@"I input the coupon '(.*)' and click apply")]
@@ -78,25 +79,27 @@ namespace uk.co.nfocus6.BDDproject.StepDefinitions
             CartPOM cart = new CartPOM(_driver);
             cart.InputCoupon(coupon);
             cart.ApplyCoupon();
-            Console.WriteLine("added Coupon: " + coupon + " and clicked apply");
-
+            Console.WriteLine("Entered Coupon: " + coupon + " and clicked apply");
+            _wrapper.CouponName = coupon;
         }
 
         [Then(@"A discount of (.*)% is applied to my cart")]
         public void ThenADiscountOfIsAppliedToMyCart(int discount)
         {
-            //assert discount applied and it's 15% discount
+            string userCoupon = _wrapper.CouponName;
+            //assert discount applied = discount passed to method
             CartPOM cart = new CartPOM(_driver);
-            string couponApplied = cart.DiscountApplied();
+            string couponApplied = cart.DiscountApplied(); //stores cart totals table text
             decimal discountAdded = cart.TheDiscount(); //actual discount applied
 
             Assert.Multiple(() =>
             {
-                Assert.That(couponApplied, Does.Contain("Coupon:"), "Discount not applied");
+                Assert.That(couponApplied, Does.Contain("Coupon: " + userCoupon), "Discount not applied");
                 Assert.That(discountAdded == (decimal)discount, "Not a " + (decimal)discount + "% discount, it's a " + decimal.Truncate(discountAdded) + "% discount");
 
             });
-            Console.WriteLine("Correct discount applied");
+            Console.WriteLine(userCoupon + " is a valid coupon");
+            Console.WriteLine("Correct discount applied - " + discount + "%");
 
             
         }
@@ -111,7 +114,6 @@ namespace uk.co.nfocus6.BDDproject.StepDefinitions
 
             Assert.That(orderTotal == calculatedTotal, "Order total is not correct");
             Console.WriteLine("Order total is correct");
-           
         }
 
         [When(@"I proceed to checkout")]
@@ -142,9 +144,12 @@ namespace uk.co.nfocus6.BDDproject.StepDefinitions
             try
             {
                 checkout.ClickChequePayment(); //clicks cheque payment
+                Console.WriteLine("Cheque payment clicked");
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Console.WriteLine(e.Message);
+                Console.WriteLine("Clicking Cheque Payments again");
                 checkout.ClickChequePayment(); //clicks cheque payment
             }
             
@@ -186,6 +191,7 @@ namespace uk.co.nfocus6.BDDproject.StepDefinitions
             string orderTable = orders.GetOrderTable(); //table text
             string orderNum = _wrapper.OrderNumber; //get from wrapper
             Assert.That(orderTable, Does.Contain(orderNum), "Order not in table");
+            Console.WriteLine("Order " + orderNum + " found in orders table");
         }
 
     }

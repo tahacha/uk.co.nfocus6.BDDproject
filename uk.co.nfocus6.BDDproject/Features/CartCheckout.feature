@@ -1,15 +1,17 @@
 ﻿@GUI
 Feature: EcommerceCartCheckoutFunctionality
+In order to promote the ecommerce site
+the cart and checkout functionality 
+must be tested
 
-A short summary of the feature
 Background: 
 Given I am logged in to the ecommerce site 
-And I have added a 'Long Sleeve Tee' to my cart 
+And I have added a 'Tshirt' to my cart 
 
 @CheckDiscount 
 Scenario: Checking Discount Applied
-	When I input the coupon 'nfocus' and click apply
-	Then A discount of 25% is applied to my cart
+	When I input the coupon 'edgewords' and click apply
+	Then A discount of 15% is applied to my cart
 	And  The order total updates accordingly 
 #Examples: 
 #| coupon    | discount |

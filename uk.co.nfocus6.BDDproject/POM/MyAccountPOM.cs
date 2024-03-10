@@ -20,11 +20,10 @@ namespace uk.co.nfocus6.BDDproject.POM
             this._driver = driver;
             string headingText = _header.Text; //wait but also grabs text
             Assert.That(headingText, Does.Contain("My account"), "Not viewing My account page"); //checks to see if the current page is My account
-            Console.WriteLine("View My Account Page");
+            Console.WriteLine("Viewing My Account Page");
         }
 
         //locators
-        private IWebElement _headingText => HelperLib.WaitForElement(_driver, By.TagName("h1"));
         private IWebElement _usernameField => HelperLib.WaitForElement(_driver, By.CssSelector("#username"));
         private IWebElement _passwordField => HelperLib.WaitForElement(_driver, By.CssSelector("#password"));
         private IWebElement _loginButton => HelperLib.WaitForElement(_driver, By.Name("login")); //locates log in button
@@ -32,10 +31,6 @@ namespace uk.co.nfocus6.BDDproject.POM
         private IWebElement _orderLink => HelperLib.WaitForElement(_driver, By.LinkText("Orders")); //loactes orders link 
 
         private IWebElement _logoutLink => HelperLib.WaitForElement(_driver, By.LinkText("Log out"));
-
-        private IWebElement _myAccountBody => HelperLib.WaitForElement(_driver, By.TagName("div"));
-        private IWebElement _errorAlert => HelperLib.WaitForElement(_driver, By.CssSelector(".woodcommerce-error::before"));
-
         private IWebElement _header => HelperLib.WaitForElement(_driver, By.XPath("//h1[contains(.,'My account')]"));
         
         //service methods
@@ -66,14 +61,14 @@ namespace uk.co.nfocus6.BDDproject.POM
             {
                 if(_logoutLink.Displayed)
                 {
-                    HelperLib.StaticTakeScreenshot(_driver, _headingText, "loggedIn_status");
+                    HelperLib.StaticTakeScreenshot(_driver, _header, "loggedIn_status");
                     return true; //if logged in 
                 }
 
             }
             catch (Exception)
             {
-                HelperLib.StaticTakeScreenshot(_driver, _headingText, "loggedIn_status");
+                HelperLib.StaticTakeScreenshot(_driver, _header, "loggedIn_status");
                 //do nothing 
             }
 

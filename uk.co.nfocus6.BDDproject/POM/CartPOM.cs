@@ -18,21 +18,18 @@ namespace uk.co.nfocus6.BDDproject.POM
         public CartPOM(IWebDriver driver) //constructor 
         {
             this._driver = driver;
-            string headingText = _header.Text; //wait but also grabs text
-            Assert.That(headingText, Does.Contain("Cart"), "Not viewing the cart"); //check on cart oage 
+            string headingText = _header.Text; //wait but also grabs text, no common element between states so wait on heading using XPath
+            Assert.That(headingText, Does.Contain("Cart"), "Not viewing the cart"); //check on cart page
             
         }
 
         //locators
-        private IWebElement _headingText => HelperLib.WaitForElement(_driver, By.TagName("h1"));
         private IWebElement _couponInput => HelperLib.WaitForElement(_driver, By.Id("coupon_code"));
 
         private IWebElement _originalTotal => HelperLib.WaitForElement(_driver, By.CssSelector(".cart-subtotal > td")); //gets original price 
      
         private IWebElement _applyCoupon => HelperLib.WaitForElement(_driver, By.Name("apply_coupon"));
 
-        private IWebElement _couponSuccessMsg => HelperLib.WaitForElement(_driver, By.CssSelector(".woocommerce-message"));
-        private IWebElement _couponErrorMsg => HelperLib.WaitForElement(_driver, By.CssSelector(".woocommerce-error"));
         private IWebElement _checkCouponDiscount => HelperLib.WaitForElement(_driver, By.CssSelector(".cart-discount .woocommerce-Price-amount"));
         
         private IWebElement _orderTotal => HelperLib.WaitForElement(_driver, By.CssSelector("strong bdi"));
@@ -45,8 +42,6 @@ namespace uk.co.nfocus6.BDDproject.POM
 
         private IWebElement _cartDiscount => HelperLib.WaitForElement(_driver, By.CssSelector(".cart-discount > th"));
         private IWebElement _emptyCartMsg => HelperLib.WaitForElement(_driver, By.CssSelector(".cart-empty"));
-
-        private IWebElement _itemRemovedMsg => HelperLib.WaitForElement(_driver, By.CssSelector(".woocommerce-message"));
         private IWebElement _returnToShop => HelperLib.WaitForElement(_driver, By.LinkText("Return to shop"),10);
 
         private IWebElement _bodyText => HelperLib.WaitForElement(_driver, By.TagName("body"));
@@ -83,10 +78,10 @@ namespace uk.co.nfocus6.BDDproject.POM
         {
             try
             {
-                if(_cartDiscount.Displayed)
+                if(_cartDiscount.Displayed) 
                 {
                     string couponText = _cartDiscount.Text;
-                    HelperLib.StaticTakeScreenshot(_driver, _cartDiscount, "coupon_status");
+                    HelperLib.StaticTakeScreenshot(_driver, _cartTotals, "coupon_status", true);
                     return couponText;
                 }
 
@@ -97,13 +92,8 @@ namespace uk.co.nfocus6.BDDproject.POM
             }
             
             return "coupon invalid";
-             
+            
         }
-
-        
-
-      
-
         public decimal TheDiscount()
         {
             decimal orderTotalNoShipWithDiscount = _orderTotalDecimal - _shippingPriceDecimal;
