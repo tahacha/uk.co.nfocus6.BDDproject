@@ -1,5 +1,7 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support;
+using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +27,8 @@ namespace uk.co.nfocus6.BDDproject.POM
         private IWebElement _headingText => HelperLib.WaitForElement(_driver, By.TagName("h1"));
         private IWebElement _firstName => HelperLib.WaitForElement(_driver, By.Id("billing_first_name"));
         private IWebElement _lastName => HelperLib.WaitForElement(_driver, By.Id("billing_last_name"));
+
+        private IWebElement _country => HelperLib.WaitForElement(_driver, By.CssSelector(".select2-selection__rendered"));
         private IWebElement _streetAddress => HelperLib.WaitForElement(_driver, By.Id("billing_address_1"));
         private IWebElement _city => HelperLib.WaitForElement(_driver, By.Id("billing_city"));
         private IWebElement _postcode => HelperLib.WaitForElement(_driver, By.Id("billing_postcode"));
@@ -49,6 +53,21 @@ namespace uk.co.nfocus6.BDDproject.POM
         {
             _lastName.Clear();
             _lastName.SendKeys(lastName);
+        }
+
+        public void SelectCountry(string country)
+        {
+            _country.Click();
+            SelectElement selectCountry = new SelectElement(_country);
+            try
+            {
+                selectCountry.SelectByText(country);
+            }
+            catch (Exception)
+            {
+                selectCountry.SelectByText("United Kingdom (UK)");
+            }
+            
         }
 
         public void EnterStreetAddress(string streetAddress)

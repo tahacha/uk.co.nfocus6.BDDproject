@@ -9,6 +9,7 @@ using OpenQA.Selenium;
 using uk.co.nfocus6.BDDproject.POM;
 using NUnit.Framework;
 using uk.co.nfocus6.BDDproject.Utils;
+using TechTalk.SpecFlow.Assist;
 
 namespace uk.co.nfocus6.BDDproject.StepDefinitions
 {
@@ -23,6 +24,7 @@ namespace uk.co.nfocus6.BDDproject.StepDefinitions
         {
             _wrapper = wrapper;
             this._driver = _wrapper.Driver;
+
         }
         [Given(@"I am logged in to the ecommerce site")]
         public void GivenIAmLoggedInToTheEcommerceSite()
@@ -124,22 +126,25 @@ namespace uk.co.nfocus6.BDDproject.StepDefinitions
             cartPage.ProceedToCheckout(); 
         }
 
-        [When(@"Fill in my address")]
-        public void FillInMyAddress()
+        [When(@"Fill in my billing details with")]
+        public void FillInMyBillingDetailsWith(Table table)
         {
+            POCO customerDetails;
             //fill in details and press payment by cheque
-            //checkout page 
-            CustomerDetails theCustomer = new CustomerDetails("Smith", "Jones", "1 Oxford Street", "London", "W1B 3AG", "123456789"); //instantiates a new object of the CustomerDetails class
-
-            //enter all details
+            //checkout page
             CheckoutPOM checkout = new CheckoutPOM(_driver);
-            checkout.EnterFirstName(theCustomer.GetFirstName());
-            checkout.EnterLastName(theCustomer.GetLastName());
-            checkout.EnterStreetAddress(theCustomer.GetAddress());
-            checkout.EnterCity(theCustomer.GetCity());
-            checkout.EnterPostcode(theCustomer.GetPostcode());
-            checkout.EnterPhone(theCustomer.GetPhone());
-            Console.WriteLine("Customer details entered");
+           
+            //new instance of table
+            customerDetails = table.CreateInstance<POCO>();
+            checkout.EnterFirstName(customerDetails.FirstName);
+            checkout.EnterLastName(customerDetails.LastName);
+            //checkout.SelectCountry(_theCustomer.Country);
+            checkout.EnterStreetAddress(customerDetails.Street);
+            checkout.EnterCity(customerDetails.City);
+            checkout.EnterPostcode(customerDetails.Postcode);
+            checkout.EnterPhone(customerDetails.Phone);
+            Console.WriteLine("Customer details entered"); 
+
 
             try
             {

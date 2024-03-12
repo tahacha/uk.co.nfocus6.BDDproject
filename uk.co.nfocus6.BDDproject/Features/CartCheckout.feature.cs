@@ -156,13 +156,37 @@ this.FeatureBackground();
 #line 23
  testRunner.When("I proceed to checkout", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
+                TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Field",
+                            "Value"});
+                table1.AddRow(new string[] {
+                            "FirstName",
+                            "Smith"});
+                table1.AddRow(new string[] {
+                            "LastName",
+                            "Jones"});
+                table1.AddRow(new string[] {
+                            "Country",
+                            "United Kingdom (UK)"});
+                table1.AddRow(new string[] {
+                            "Street",
+                            "1 Oxford Street"});
+                table1.AddRow(new string[] {
+                            "City",
+                            "London"});
+                table1.AddRow(new string[] {
+                            "Postcode",
+                            "W1B 3AG"});
+                table1.AddRow(new string[] {
+                            "Phone",
+                            "123456789"});
 #line 24
-   testRunner.And("Fill in my address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+   testRunner.And("Fill in my billing details with", ((string)(null)), table1, "And ");
 #line hidden
-#line 25
+#line 33
  testRunner.Then("I can place my order", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 26
+#line 34
    testRunner.And("Verify my order has been placed by checking the orders page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
