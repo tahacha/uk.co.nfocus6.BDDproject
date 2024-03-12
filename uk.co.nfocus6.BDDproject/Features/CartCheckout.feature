@@ -6,18 +6,22 @@ must be tested
 
 Background: 
 Given I am logged in to the ecommerce site 
-And I have added a 'Tshirt' to my cart 
+  And I have added a 'Sunglasses' to my cart 
 
 @CheckDiscount 
 Scenario: Checking Discount Applied
-	When I input the coupon 'edgewords' and click apply
-	Then A discount of 15% is applied to my cart
-	And  The order total updates accordingly
+	When I input the coupon '<coupon>'
+	Then A discount of <discount(%)>% is applied to my cart
+	  And  The order total updates accordingly
+Examples:
+| coupon    | discount(%)|
+| nfocus    | 25         |
+| edgewords | 15         | 
 
 @CheckOrderNo
 Scenario: Checking The Order Has Been Placed
 	When I proceed to checkout
-	And Fill in my address and click the payment by cheque option 
-	Then I can place my order and see a summary of my order including an order number 
-	And Verify my order has been placed my checking the same order number appears on the orders page 
+	  And Fill in my address
+	Then I can place my order
+	  And Verify my order has been placed by checking the orders page 
 	

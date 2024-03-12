@@ -73,8 +73,8 @@ namespace uk.co.nfocus6.BDDproject.StepDefinitions
             Console.WriteLine("View cart clicked");
         }
 
-        [When(@"I input the coupon '(.*)' and click apply")]
-        public void WhenIInputTheCouponAndClickApply(string coupon)
+        [When(@"I input the coupon '(.*)'")]
+        public void WhenIInputTheCoupon(string coupon)
         {
             CartPOM cart = new CartPOM(_driver);
             cart.InputCoupon(coupon);
@@ -124,8 +124,8 @@ namespace uk.co.nfocus6.BDDproject.StepDefinitions
             cartPage.ProceedToCheckout(); 
         }
 
-        [When(@"Fill in my address and click the payment by cheque option")]
-        public void FillInMyAddressAndClickThePaymentByChequeOption()
+        [When(@"Fill in my address")]
+        public void FillInMyAddress()
         {
             //fill in details and press payment by cheque
             //checkout page 
@@ -155,8 +155,8 @@ namespace uk.co.nfocus6.BDDproject.StepDefinitions
             
         }
 
-        [Then(@"I can place my order and see a summary of my order including an order number")]
-        public void ThenICanPlaceMyOrderAndSeeASummaryOfMyOrderIncludingAnOrderNumber()
+        [Then(@"I can place my order")]
+        public void ThenICanPlaceMyOrder()
         {
             //places order and captures the order number 
             CheckoutPOM checkout = new CheckoutPOM(_driver);
@@ -175,8 +175,8 @@ namespace uk.co.nfocus6.BDDproject.StepDefinitions
             _wrapper.OrderNumber = orderNo; //stores
         }
 
-        [Then(@"Verify my order has been placed my checking the same order number appears on the orders page")]
-        public void ThenVerifyMyOrderHasBeenPlacedMyCheckingTheSameOrderNumberAppearsOnTheOrdersPage()
+        [Then(@"Verify my order has been placed by checking the orders page")]
+        public void ThenVerifyMyOrderHasBeenPlacedByCheckingTheOrdersPage()
         {
             //takes order no from summary and compares it to the order no that appears in the order table
             NavBarPOM navBar = new NavBarPOM(_driver);
