@@ -166,8 +166,8 @@ this.FeatureBackground();
                             "LastName",
                             "Jones"});
                 table1.AddRow(new string[] {
-                            "Country",
-                            "United Kingdom (UK)"});
+                            "Company",
+                            ""});
                 table1.AddRow(new string[] {
                             "Street",
                             "1 Oxford Street"});
@@ -175,18 +175,27 @@ this.FeatureBackground();
                             "City",
                             "London"});
                 table1.AddRow(new string[] {
+                            "County",
+                            ""});
+                table1.AddRow(new string[] {
                             "Postcode",
                             "W1B 3AG"});
                 table1.AddRow(new string[] {
                             "Phone",
                             "123456789"});
+                table1.AddRow(new string[] {
+                            "Email",
+                            "smith@example.com"});
+                table1.AddRow(new string[] {
+                            "OrderNotes",
+                            ""});
 #line 24
    testRunner.And("Fill in my billing details with", ((string)(null)), table1, "And ");
 #line hidden
-#line 33
+#line 36
  testRunner.Then("I can place my order", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 34
+#line 37
    testRunner.And("Verify my order has been placed by checking the orders page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }

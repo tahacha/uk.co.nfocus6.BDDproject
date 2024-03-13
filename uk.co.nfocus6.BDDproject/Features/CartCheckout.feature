@@ -21,15 +21,20 @@ Examples:
 @CheckOrderNo
 Scenario: Checking The Order Has Been Placed
 	When I proceed to checkout
-	  And Fill in my billing details with
-	      | Field     | Value               |
-	      | FirstName | Smith               |
-	      | LastName  | Jones               |
-	      | Country   | United Kingdom (UK) |
-	      | Street    | 1 Oxford Street     |
-	      | City      | London              |
-	      | Postcode  | W1B 3AG             |
-	      | Phone     | 123456789           |
+	  And Fill in my billing details with 
+	      | Field      | Value             |
+	      | FirstName  | Smith             |
+	      | LastName   | Jones             |
+	      | Company    |                   | 
+	      | Street     | 1 Oxford Street   |
+	      | City       | London            |
+	      | County     |                   |
+	      | Postcode   | W1B 3AG           |
+	      | Phone      | 123456789         |
+	      | Email      | smith@example.com |
+	      | OrderNotes |                   |
 	Then I can place my order
 	  And Verify my order has been placed by checking the orders page 
+	
+	#Company, County and OrderNotes are all optional fields
 	

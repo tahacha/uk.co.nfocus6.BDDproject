@@ -27,12 +27,16 @@ namespace uk.co.nfocus6.BDDproject.POM
         private IWebElement _headingText => HelperLib.WaitForElement(_driver, By.TagName("h1"));
         private IWebElement _firstName => HelperLib.WaitForElement(_driver, By.Id("billing_first_name"));
         private IWebElement _lastName => HelperLib.WaitForElement(_driver, By.Id("billing_last_name"));
-
-        private IWebElement _country => HelperLib.WaitForElement(_driver, By.CssSelector(".select2-selection__rendered"));
+        private IWebElement _company => HelperLib.WaitForElement(_driver, By.Id("billing_company")); //optional field
         private IWebElement _streetAddress => HelperLib.WaitForElement(_driver, By.Id("billing_address_1"));
         private IWebElement _city => HelperLib.WaitForElement(_driver, By.Id("billing_city"));
+        private IWebElement _county => HelperLib.WaitForElement(_driver, By.Id("billing_state")); //optional field
         private IWebElement _postcode => HelperLib.WaitForElement(_driver, By.Id("billing_postcode"));
         private IWebElement _phone => HelperLib.WaitForElement(_driver, By.Id("billing_phone"));
+
+        private IWebElement _email => HelperLib.WaitForElement(_driver, By.Id("billing_email"));
+
+        private IWebElement _orderNotes => HelperLib.WaitForElement(_driver, By.Name("order_comments")); //optional field
         private IWebElement _paymentByCheque => HelperLib.WaitForElement(_driver,By.CssSelector(".payment_method_cheque > label"));
 
         private IWebElement _placeOrder => HelperLib.WaitForElement(_driver, By.CssSelector("#place_order"));
@@ -55,21 +59,11 @@ namespace uk.co.nfocus6.BDDproject.POM
             _lastName.SendKeys(lastName);
         }
 
-        public void SelectCountry(string country)
+        public void EnterCompany(string company)
         {
-            _country.Click();
-            SelectElement selectCountry = new SelectElement(_country);
-            try
-            {
-                selectCountry.SelectByText(country);
-            }
-            catch (Exception)
-            {
-                selectCountry.SelectByText("United Kingdom (UK)");
-            }
-            
+            _company.Clear();
+            _company.SendKeys(company);
         }
-
         public void EnterStreetAddress(string streetAddress)
         {
             _streetAddress.Clear();
@@ -82,6 +76,11 @@ namespace uk.co.nfocus6.BDDproject.POM
             _city.SendKeys(city);
         }
 
+        public void EnterCounty(string county)
+        {
+            _county.Clear();
+            _county.SendKeys(county);    
+        }
         public void EnterPostcode(string postcode)
         {
             _postcode.Clear();
@@ -92,6 +91,18 @@ namespace uk.co.nfocus6.BDDproject.POM
         {
             _phone.Clear();
             _phone.SendKeys(phone);
+        }
+
+        public void EnterEmail(string email)
+        {
+            _email.Clear();
+            _email.SendKeys(email);
+        }
+
+        public void EnterOrderNotes(string notes)
+        {
+            _orderNotes.Clear();
+            _orderNotes.SendKeys(notes);   
         }
 
         public void ClickChequePayment()

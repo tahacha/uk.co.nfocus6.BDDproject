@@ -129,20 +129,23 @@ namespace uk.co.nfocus6.BDDproject.StepDefinitions
         [When(@"Fill in my billing details with")]
         public void FillInMyBillingDetailsWith(Table table)
         {
-            POCO customerDetails;
+            BillingPOCO customerDetails;
             //fill in details and press payment by cheque
             //checkout page
             CheckoutPOM checkout = new CheckoutPOM(_driver);
            
             //new instance of table
-            customerDetails = table.CreateInstance<POCO>();
+            customerDetails = table.CreateInstance<BillingPOCO>();
             checkout.EnterFirstName(customerDetails.FirstName);
             checkout.EnterLastName(customerDetails.LastName);
-            //checkout.SelectCountry(_theCustomer.Country);
+            checkout.EnterCompany(customerDetails.Company);
             checkout.EnterStreetAddress(customerDetails.Street);
             checkout.EnterCity(customerDetails.City);
+            checkout.EnterCounty(customerDetails.County);
             checkout.EnterPostcode(customerDetails.Postcode);
             checkout.EnterPhone(customerDetails.Phone);
+            checkout.EnterEmail(customerDetails.Email);
+            checkout.EnterOrderNotes(customerDetails.OrderNotes);
             Console.WriteLine("Customer details entered"); 
 
 
