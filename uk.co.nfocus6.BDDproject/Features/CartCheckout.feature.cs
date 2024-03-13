@@ -82,9 +82,6 @@ namespace uk.co.nfocus6.BDDproject.Features
 #line 8
 testRunner.Given("I am logged in to the ecommerce site", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 9
-  testRunner.And("I have added a \'Sunglasses\' to my cart", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
@@ -105,7 +102,7 @@ testRunner.Given("I am logged in to the ecommerce site", ((string)(null)), ((Tec
             argumentsOfScenario.Add("coupon", coupon);
             argumentsOfScenario.Add("discount(%)", discount);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Checking Discount Applied", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 12
+#line 11
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -117,6 +114,9 @@ this.ScenarioInitialize(scenarioInfo);
                 this.ScenarioStart();
 #line 7
 this.FeatureBackground();
+#line hidden
+#line 12
+    testRunner.Given("I have added \'Beanie\' to my cart", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 13
  testRunner.When(string.Format("I input the coupon \'{0}\'", coupon), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -154,6 +154,9 @@ this.ScenarioInitialize(scenarioInfo);
 this.FeatureBackground();
 #line hidden
 #line 23
+    testRunner.Given("I have added \'Beanie\' to my cart", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 24
  testRunner.When("I proceed to checkout", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
                 TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
@@ -189,13 +192,13 @@ this.FeatureBackground();
                 table1.AddRow(new string[] {
                             "OrderNotes",
                             ""});
-#line 24
+#line 25
    testRunner.And("Fill in my billing details with", ((string)(null)), table1, "And ");
 #line hidden
-#line 36
+#line 37
  testRunner.Then("I can place my order", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 37
+#line 38
    testRunner.And("Verify my order has been placed by checking the orders page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
