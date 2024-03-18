@@ -3,6 +3,7 @@ using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using TechTalk.SpecFlow.Assist;
@@ -53,9 +54,12 @@ namespace uk.co.nfocus6.BDDproject.StepDefinitions
             checkout.EnterOrderNotes(customerDetails.OrderNotes);
             Console.WriteLine("Customer details entered");
 
+            string billingFieldsData = checkout.GetBillingFieldsText();
 
+            //assert for each field that is compulsory
+            
             try
-            {
+            { 
                 checkout.ClickChequePayment(); //clicks cheque payment
                 Console.WriteLine("Cheque payment clicked");
             }

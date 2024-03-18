@@ -25,6 +25,7 @@ namespace uk.co.nfocus6.BDDproject.POM
         }
         //locators 
         private IWebElement _headingText => HelperLib.WaitForElement(_driver, By.TagName("h1"));
+        private IWebElement _billingFields => HelperLib.WaitForElement(_driver, By.CssSelector(".woocommerce-billing-fields"));
         private IWebElement _firstName => HelperLib.WaitForElement(_driver, By.Id("billing_first_name"));
         private IWebElement _lastName => HelperLib.WaitForElement(_driver, By.Id("billing_last_name"));
         private IWebElement _company => HelperLib.WaitForElement(_driver, By.Id("billing_company")); //optional field
@@ -114,6 +115,11 @@ namespace uk.co.nfocus6.BDDproject.POM
         public void ClickPlaceOrder()
         {
             _placeOrder.Click();
+        }
+
+        public string GetBillingFieldsText()
+        {
+            return _billingFields.Text;
         }
 
         public string GetOrderNo()
