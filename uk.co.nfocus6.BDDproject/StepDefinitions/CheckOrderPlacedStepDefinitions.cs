@@ -105,9 +105,9 @@ namespace uk.co.nfocus6.BDDproject.StepDefinitions
 
             OrderPOM orders = new OrderPOM(_driver);
 
-            string orderTable = orders.GetOrderTable(); //table text
-            string orderNum = _container.OrderNumber; //get from wrapper
-            Assert.That(orderTable, Does.Contain(orderNum), "Order not in table");
+            string latestOrder = orders.GetLatestOrder(); //first row in order table
+            string orderNum = _container.OrderNumber; //get from container
+            Assert.That(latestOrder, Does.Contain(orderNum), "Order not in table");
             Console.WriteLine("Order " + orderNum + " found in orders table");
         }
     }

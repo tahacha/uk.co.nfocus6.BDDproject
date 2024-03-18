@@ -24,12 +24,13 @@ namespace uk.co.nfocus6.BDDproject.POM
         private IWebElement _headingText => HelperLib.WaitForElement(_driver, By.TagName("h1"));
         private IWebElement _orderTable => HelperLib.WaitForElement(_driver, By.TagName("tbody"));
 
-        //methods 
-        public string GetOrderTable()
+        private IWebElement _latestOrder => HelperLib.WaitForElement(_driver, By.CssSelector("#post-7 > div > div > div > table > tbody > tr:nth-child(1)"));
+
+        public string GetLatestOrder()
         {
-            string orderTableText = _orderTable.Text; //text of the table
+            string latestOrderText = _latestOrder.Text;
             HelperLib.StaticTakeScreenshot(_driver, _orderTable, "order_table");
-            return orderTableText;
+            return latestOrderText;
         }
     }
 }
