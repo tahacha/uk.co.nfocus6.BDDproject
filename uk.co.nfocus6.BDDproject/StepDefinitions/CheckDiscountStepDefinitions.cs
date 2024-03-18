@@ -17,13 +17,13 @@ namespace uk.co.nfocus6.BDDproject.StepDefinitions
     [Binding]
     public class CheckDiscountStepDefinitions
     {
-        private readonly Wrapper _wrapper;
+        private readonly ShopContainer _container;
         private IWebDriver _driver;
 
-        public CheckDiscountStepDefinitions(Wrapper wrapper)
+        public CheckDiscountStepDefinitions(ShopContainer container)
         {
-            _wrapper = wrapper;
-            this._driver = _wrapper.Driver;
+            _container = container;
+            this._driver = _container.Driver;
 
         }
         
@@ -34,13 +34,13 @@ namespace uk.co.nfocus6.BDDproject.StepDefinitions
             cart.InputCoupon(coupon);
             cart.ApplyCoupon();
             Console.WriteLine("Entered Coupon: " + coupon + " and clicked apply");
-            _wrapper.CouponName = coupon;
+            _container.CouponName = coupon;
         }
 
         [Then(@"A discount of (.*)% is applied to my cart")]
         public void ThenADiscountOfIsAppliedToMyCart(int discount)
         {
-            string userCoupon = _wrapper.CouponName;
+            string userCoupon = _container.CouponName;
             //assert discount applied = discount passed to method
             CartPOM cart = new CartPOM(_driver);
             string couponApplied = cart.DiscountApplied(); //stores cart totals table text

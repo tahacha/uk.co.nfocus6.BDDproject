@@ -16,11 +16,11 @@ namespace uk.co.nfocus6.BDDproject.Utils
     public class Hooks
     {
         private static IWebDriver? _driver;
-        private readonly Wrapper _wrapper;
+        private readonly ShopContainer _container;
 
-        public Hooks(Wrapper wrapper)
+        public Hooks(ShopContainer container)
         {
-            _wrapper = wrapper;
+            _container = container;
         }
 
         [Before("@GUI")]
@@ -52,20 +52,18 @@ namespace uk.co.nfocus6.BDDproject.Utils
             {
                 _driver.Url = startPage;
             }
-            catch (Exception e) //problem with URL declared in run settings
+            catch (Exception) //problem with URL declared in run settings
             {
-                Console.WriteLine("Error with setting URL, please check WebAppURL in run settings");
-                Console.WriteLine(e.Message);
-                Assert.Fail(); //calls teardown since assertion failed
+                throw new Exception("Error with setting URL, please check WebAppURL in run settings");
             }
-            _wrapper.Driver = _driver;
+
+            _container.Driver = _driver;
+            _driver.Manage().Window.Maximize(); //fullscreen
 
             //Home page of ecommerce site
             HomePOM home = new HomePOM(_driver);
             home.DismissBanner();
             Console.WriteLine("Closed banner at the bottom of the page");
-
-            _driver.Manage().Window.Maximize(); //fullscreen
 
             //Navigate to my account page
             NavBarPOM nav = new NavBarPOM(_driver);
@@ -83,7 +81,7 @@ namespace uk.co.nfocus6.BDDproject.Utils
                 return;
             }
 
-            bool login = _wrapper.LoggedIn;
+            bool login = _container.LoggedIn;
             if (login)
             {
                 CheckCart(); //check if cart needs to be emptied

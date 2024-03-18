@@ -13,13 +13,13 @@ namespace uk.co.nfocus6.BDDproject.StepDefinitions
     [Binding]
     public class SharedStepDefinitions
     {
-        private readonly Wrapper _wrapper;
+        private readonly ShopContainer _container;
         private IWebDriver _driver;
 
-        public SharedStepDefinitions(Wrapper wrapper)
+        public SharedStepDefinitions(ShopContainer container)
         {
-            _wrapper = wrapper;
-            this._driver = _wrapper.Driver;
+            _container = container;
+            this._driver = _container.Driver;
         }
 
         [Given(@"I am logged in to the ecommerce site")]
@@ -48,7 +48,7 @@ namespace uk.co.nfocus6.BDDproject.StepDefinitions
 
             //check to see if logged in
             bool loggedIn = myAccount.SuccessfulLogin();
-            _wrapper.LoggedIn = loggedIn;
+            _container.LoggedIn = loggedIn;
             Assert.That(myAccount.SuccessfulLogin() == true, "Incorrect User Credentials");
             Console.WriteLine("Logged In");
         }

@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace uk.co.nfocus6.BDDproject.Utils
 {
-    public class Wrapper
+    public class ShopContainer
     {
         private IWebDriver? _driver;
         private bool _loggedIn;
-        public string _couponName = "";
+        private string _couponName = "";
         private string _orderNumber = "";
         public IWebDriver Driver { get => _driver!; set => _driver = value; }
 

@@ -15,13 +15,13 @@ namespace uk.co.nfocus6.BDDproject.StepDefinitions
     [Binding]
     public class CheckOrderPlacedStepDefinitions
     {
-        private readonly Wrapper _wrapper;
+        private readonly ShopContainer _container;
         private IWebDriver _driver;
 
-        public CheckOrderPlacedStepDefinitions(Wrapper wrapper)
+        public CheckOrderPlacedStepDefinitions(ShopContainer container)
         {
-            _wrapper = wrapper;
-            this._driver = _wrapper.Driver;
+            _container = container;
+            this._driver = _container.Driver;
         }
 
         [When(@"I proceed to checkout")]
@@ -89,7 +89,7 @@ namespace uk.co.nfocus6.BDDproject.StepDefinitions
             }
             string orderNo = checkout.GetOrderNo();
             Console.WriteLine("Order Placed, Order No: " + "#" + orderNo); //writes order no to console
-            _wrapper.OrderNumber = orderNo; //stores
+            _container.OrderNumber = orderNo; //stores
         }
 
         [Then(@"Verify my order has been placed by checking the orders page")]
@@ -106,7 +106,7 @@ namespace uk.co.nfocus6.BDDproject.StepDefinitions
             OrderPOM orders = new OrderPOM(_driver);
 
             string orderTable = orders.GetOrderTable(); //table text
-            string orderNum = _wrapper.OrderNumber; //get from wrapper
+            string orderNum = _container.OrderNumber; //get from wrapper
             Assert.That(orderTable, Does.Contain(orderNum), "Order not in table");
             Console.WriteLine("Order " + orderNum + " found in orders table");
         }
