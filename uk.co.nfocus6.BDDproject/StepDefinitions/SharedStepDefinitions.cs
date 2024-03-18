@@ -47,9 +47,9 @@ namespace uk.co.nfocus6.BDDproject.StepDefinitions
             myAccount.ClickLogin();
 
             //check to see if logged in
-            bool loggedIn = myAccount.SuccessfulLogin();
+            bool loggedIn = myAccount.IsLoggedIn();
             _container.LoggedIn = loggedIn;
-            Assert.That(myAccount.SuccessfulLogin() == true, "Incorrect User Credentials");
+            Assert.That(myAccount.IsLoggedIn() == true, "Incorrect User Credentials");
             Console.WriteLine("Logged In");
         }
 

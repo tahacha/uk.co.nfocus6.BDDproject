@@ -54,7 +54,7 @@ namespace uk.co.nfocus6.BDDproject.POM
             //SuccessfulLogin();
         }
 
-        public bool SuccessfulLogin()
+        public bool IsLoggedIn()
         {
            
             try
