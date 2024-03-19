@@ -57,6 +57,7 @@ namespace uk.co.nfocus6.BDDproject.StepDefinitions
             string billingFieldsData = checkout.GetBillingFieldsText();
 
             //assert for each field that is compulsory
+
             bool clickChequePayment = false;
             while(!clickChequePayment)
             {
@@ -66,7 +67,7 @@ namespace uk.co.nfocus6.BDDproject.StepDefinitions
                     Console.WriteLine("Cheque payment clicked");
                     clickChequePayment = true;
                 }
-                catch (Exception e)
+                catch (Exception e) //if click intercepted or stale element 
                 {
                     Console.WriteLine(e.Message);
                     Console.WriteLine("Clicking Cheque Payments again");
@@ -90,7 +91,7 @@ namespace uk.co.nfocus6.BDDproject.StepDefinitions
                     checkout.ClickPlaceOrder();
                     placedOrder = true;
                 }
-                catch (Exception e)
+                catch (Exception e) //if click intercepted or stale element 
                 {
                     Console.WriteLine(e.Message);
                     Console.WriteLine("Clicking place order again");

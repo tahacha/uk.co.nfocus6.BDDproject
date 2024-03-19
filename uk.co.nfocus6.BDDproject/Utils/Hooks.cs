@@ -101,19 +101,25 @@ namespace uk.co.nfocus6.BDDproject.Utils
         {
             //navigate to cart
             NavBarPOM nav = new NavBarPOM(_driver!);
-            
-            
+
+
             //could implement try catch for click interception if scroll doesn't work
-            try
+            bool cartClick = false;
+            while(!cartClick)
             {
-                nav.ViewCart();
-                Console.WriteLine("Cart clicked from nav");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-                Console.WriteLine("Trying to click Cart again");
-                nav.ViewCart();
+                try
+                {
+                    nav.ViewCart();
+                    Console.WriteLine("Cart clicked from nav");
+                    cartClick = true;
+                }
+                catch (Exception e) //if click fails 
+                {
+                    Console.WriteLine(e.Message);
+                    Console.WriteLine("Trying to click Cart again");
+                    nav.ViewCart();
+                    cartClick = true;
+                }
             }
 
             //check cart
@@ -124,21 +130,26 @@ namespace uk.co.nfocus6.BDDproject.Utils
         {
             //navigate to the my account page
             NavBarPOM nav = new NavBarPOM(_driver!);
-            
-            //try catch for click interception if scroll doesn't prevent ClickInterception
-            try
-            {
-                nav.ViewMyAccount();
-                Console.WriteLine("My account clicked from nav");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-                Console.WriteLine("Trying to click My account again");
-                nav.ViewMyAccount();
-            }
-            
 
+            //try catch for click interception if scroll doesn't prevent ClickInterception
+            bool accountClick = false;
+            while(!accountClick)
+            {
+                try
+                {
+                    nav.ViewMyAccount();
+                    Console.WriteLine("My account clicked from nav");
+                    accountClick = true; //exit loop
+                }
+                catch (Exception e) //if click fails
+                {
+                    Console.WriteLine(e.Message);
+                    Console.WriteLine("Trying to click My account again");
+                    nav.ViewMyAccount();
+                    accountClick = true;
+                }
+            }
+            
             //clicks the logout link
             MyAccountPOM myAccount = new MyAccountPOM(_driver!);
             myAccount.ClickLogout();
