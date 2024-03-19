@@ -20,7 +20,6 @@ namespace uk.co.nfocus6.BDDproject.POM
             this._driver = driver;
             string headingText = _header.Text; //wait but also grabs text, no common element between states so wait on heading using XPath
             Assert.That(headingText, Does.Contain("Cart"), "Not viewing the cart"); //check on cart page
-            
         }
 
         //locators

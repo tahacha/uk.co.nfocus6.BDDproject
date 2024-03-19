@@ -18,7 +18,7 @@ namespace uk.co.nfocus6.BDDproject.POM
         public HomePOM(IWebDriver driver)
         {
             this._driver = driver;
-            _body.Click(); //wait
+            HelperLib.WaitForElement(_driver, By.LinkText("Dismiss")); //wait
             string headingText = _headingText.Text;
             Assert.That(headingText, Does.Contain("Welcome")); //checks to see if it's the home page
             Console.WriteLine("Viewing home page");

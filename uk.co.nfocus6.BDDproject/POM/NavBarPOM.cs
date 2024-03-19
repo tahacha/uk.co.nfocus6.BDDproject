@@ -15,7 +15,7 @@ namespace uk.co.nfocus6.BDDproject.POM
         public NavBarPOM(IWebDriver driver)
         {
             this._driver = driver;
-            HelperLib.StaticWaitForElement(_driver, By.LinkText("Blog"));
+            HelperLib.WaitForElement(_driver, By.LinkText("Blog"));
             HelperLib.ScrollUntilElement(_driver, _nameLink);
         }
 
