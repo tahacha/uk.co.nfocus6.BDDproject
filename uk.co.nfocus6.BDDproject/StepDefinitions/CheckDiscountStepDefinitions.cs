@@ -38,7 +38,7 @@ namespace uk.co.nfocus6.BDDproject.StepDefinitions
         }
 
         [Then(@"A discount of (.*)% is applied to my cart")]
-        public void ThenADiscountOfIsAppliedToMyCart(int discount)
+        public void ThenADiscountOfIsAppliedToMyCart(decimal discount)
         {
             string userCoupon = _container.CouponName;
             //assert discount applied = discount passed to method
@@ -49,8 +49,7 @@ namespace uk.co.nfocus6.BDDproject.StepDefinitions
             Assert.Multiple(() =>
             {
                 Assert.That(couponApplied, Does.Contain("Coupon: " + userCoupon), "Discount not applied");
-                Assert.That(discountAdded == (decimal)discount, "Not a " + (decimal)discount + "% discount, it's a " + decimal.Truncate(discountAdded) + "% discount");
-
+                Assert.That(discountAdded, Is.EqualTo(discount), "Not a " + discount + "% discount, it's a " + discountAdded + "% discount");
             });
             Console.WriteLine(userCoupon + " is a valid coupon");
             Console.WriteLine("Correct discount applied - " + discount + "%");
