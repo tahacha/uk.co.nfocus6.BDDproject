@@ -65,7 +65,7 @@ namespace uk.co.nfocus6.BDDproject.StepDefinitions
             decimal orderTotal = cart.GetOrderTotal();
             decimal calculatedTotal = cart.GetCalculatedTotal();
 
-            Assert.That(orderTotal == calculatedTotal, "Order total is not correct");
+            Assert.That(orderTotal, Is.EqualTo(calculatedTotal), "Order total is not correct");
             Console.WriteLine("Order total is correct");
         }
 
