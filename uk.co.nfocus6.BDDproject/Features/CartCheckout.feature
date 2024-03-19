@@ -20,7 +20,7 @@ Examples:
 
 @CheckOrderNo
 Scenario: Checking The Order Has Been Placed
-    Given I have added 'Beanie' to my cart
+    Given I have added 'Tshirt' to my cart
 	When I proceed to checkout
 	  And Fill in my billing details with 
 	      | Field      | Value             |

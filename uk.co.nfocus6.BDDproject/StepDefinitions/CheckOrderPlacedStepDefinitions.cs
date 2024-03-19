@@ -57,19 +57,23 @@ namespace uk.co.nfocus6.BDDproject.StepDefinitions
             string billingFieldsData = checkout.GetBillingFieldsText();
 
             //assert for each field that is compulsory
-            
-            try
-            { 
-                checkout.ClickChequePayment(); //clicks cheque payment
-                Console.WriteLine("Cheque payment clicked");
-            }
-            catch (Exception e)
+            bool clickChequePayment = false;
+            while(!clickChequePayment)
             {
-                Console.WriteLine(e.Message);
-                Console.WriteLine("Clicking Cheque Payments again");
-                checkout.ClickChequePayment(); //clicks cheque payment
+                try
+                {
+                    checkout.ClickChequePayment(); //clicks cheque payment
+                    Console.WriteLine("Cheque payment clicked");
+                    clickChequePayment = true;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                    Console.WriteLine("Clicking Cheque Payments again");
+                    checkout.ClickChequePayment(); //clicks cheque payment
+                    clickChequePayment = true;
+                }
             }
-
         }
 
         [Then(@"I can place my order")]
@@ -77,16 +81,24 @@ namespace uk.co.nfocus6.BDDproject.StepDefinitions
         {
             //places order and captures the order number 
             CheckoutPOM checkout = new CheckoutPOM(_driver);
-            try
+            bool placedOrder = false;
+            
+            while(!placedOrder)
             {
-                checkout.ClickPlaceOrder();
+                try
+                {
+                    checkout.ClickPlaceOrder();
+                    placedOrder = true;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                    Console.WriteLine("Clicking place order again");
+                    checkout.ClickPlaceOrder();
+                    placedOrder = true;
+                }
             }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-                Console.WriteLine("Clicking place order again");
-                checkout.ClickPlaceOrder();
-            }
+            
             string orderNo = checkout.GetOrderNo();
             Console.WriteLine("Order Placed, Order No: " + "#" + orderNo); //writes order no to console
             _container.OrderNumber = orderNo; //stores
