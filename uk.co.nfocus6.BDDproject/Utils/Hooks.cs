@@ -79,7 +79,7 @@ namespace uk.co.nfocus6.BDDproject.Utils
             string? startPage = TestContext.Parameters["WebAppURL"];
             if(startPage == string.Empty)
             {
-                Console.WriteLine("Driver closed to missing URL, please check WebAppURL");
+                _outputHelper.WriteLine("Driver closed to missing URL, please check WebAppURL");
                 _driver!.Quit(); //closes driver 
                 return;
             }
@@ -89,18 +89,19 @@ namespace uk.co.nfocus6.BDDproject.Utils
             {
                 CheckCart(); //check if cart needs to be emptied
                 Logout();
-                Console.WriteLine("Logged out");
+                _outputHelper.WriteLine("Logged out");
             }
 
             else
             {
-                Console.WriteLine("User not logged in, logout process not needed");
+                _outputHelper.WriteLine("User not logged in, logout process not needed");
             }
 
             _driver!.Quit();
             
         }
-        private static void CheckCart()
+        
+        private void CheckCart()
         {
             //navigate to cart
             NavBarPOM nav = new NavBarPOM(_driver!);
@@ -113,15 +114,14 @@ namespace uk.co.nfocus6.BDDproject.Utils
                 try
                 {
                     nav.ViewCart();
-                    Console.WriteLine("Cart clicked from nav");
+                    _outputHelper.WriteLine("Cart clicked from nav");
                     cartClick = true;
                 }
                 catch (Exception e) //if click fails 
                 {
-                    Console.WriteLine(e.Message);
-                    Console.WriteLine("Trying to click Cart again");
-                    nav.ViewCart();
-                    cartClick = true;
+                    _outputHelper.WriteLine(e.Message);
+                    _outputHelper.WriteLine("Click failed, trying to click Cart again");
+                    continue;
                 }
             }
 
@@ -129,7 +129,7 @@ namespace uk.co.nfocus6.BDDproject.Utils
             CartPOM cart = new CartPOM(_driver!);
             cart.EmptyCart();
         }
-        private static void Logout()
+        private void Logout()
         {
             //navigate to the my account page
             NavBarPOM nav = new NavBarPOM(_driver!);
@@ -141,15 +141,14 @@ namespace uk.co.nfocus6.BDDproject.Utils
                 try
                 {
                     nav.ViewMyAccount();
-                    Console.WriteLine("My account clicked from nav");
+                    _outputHelper.WriteLine("My account clicked from nav");
                     accountClick = true; //exit loop
                 }
                 catch (Exception e) //if click fails
                 {
-                    Console.WriteLine(e.Message);
-                    Console.WriteLine("Trying to click My account again");
-                    nav.ViewMyAccount();
-                    accountClick = true;
+                    _outputHelper.WriteLine(e.Message);
+                    _outputHelper.WriteLine("Click failed, trying to click My account again");
+                    continue;
                 }
             }
             

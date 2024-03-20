@@ -73,9 +73,8 @@ namespace uk.co.nfocus6.BDDproject.StepDefinitions
                 catch (Exception e) //if click intercepted or stale element 
                 {
                     _outputHelper.WriteLine(e.Message);
-                    _outputHelper.WriteLine("Clicking Cheque Payments again");
-                    checkout.ClickChequePayment(); //clicks cheque payment
-                    clickChequePayment = true; //exit loop if click successful
+                    _outputHelper.WriteLine("Click failed, clicking Cheque Payments again");
+                    continue;
                 }
             }
         }
@@ -97,9 +96,8 @@ namespace uk.co.nfocus6.BDDproject.StepDefinitions
                 catch (Exception e) //if click intercepted or stale element 
                 {
                     _outputHelper.WriteLine(e.Message);
-                    _outputHelper.WriteLine("Clicking place order again");
-                    checkout.ClickPlaceOrder();
-                    placedOrder = true; //exit loop if click successful
+                    _outputHelper.WriteLine("Click failed, clicking place order again");
+                    continue;
                 }
             }
             
