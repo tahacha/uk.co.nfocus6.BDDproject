@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using TechTalk.SpecFlow.Assist;
+using TechTalk.SpecFlow.Infrastructure;
 using uk.co.nfocus6.BDDproject.POM;
 using uk.co.nfocus6.BDDproject.Utils;
 
@@ -17,11 +18,13 @@ namespace uk.co.nfocus6.BDDproject.StepDefinitions
     {
         private readonly ShopContainer _container;
         private IWebDriver _driver;
+        private readonly ISpecFlowOutputHelper _outputHelper;
 
-        public CheckOrderPlacedStepDefinitions(ShopContainer container)
+        public CheckOrderPlacedStepDefinitions(ShopContainer container, ISpecFlowOutputHelper outputHelper)
         {
             _container = container;
             this._driver = _container.Driver;
+            _outputHelper = outputHelper;
         }
 
         [When(@"I proceed to checkout")]
@@ -52,7 +55,7 @@ namespace uk.co.nfocus6.BDDproject.StepDefinitions
             checkout.EnterPhone(customerDetails.Phone);
             checkout.EnterEmail(customerDetails.Email);
             checkout.EnterOrderNotes(customerDetails.OrderNotes);
-            Console.WriteLine("Customer details entered");
+            _outputHelper.WriteLine("Customer details entered");
 
             string billingFieldsData = checkout.GetBillingFieldsText();
 
@@ -64,15 +67,15 @@ namespace uk.co.nfocus6.BDDproject.StepDefinitions
                 try
                 {
                     checkout.ClickChequePayment(); //clicks cheque payment
-                    Console.WriteLine("Cheque payment clicked");
+                    _outputHelper.WriteLine("Cheque payment clicked");
                     clickChequePayment = true;
                 }
                 catch (Exception e) //if click intercepted or stale element 
                 {
-                    Console.WriteLine(e.Message);
-                    Console.WriteLine("Clicking Cheque Payments again");
+                    _outputHelper.WriteLine(e.Message);
+                    _outputHelper.WriteLine("Clicking Cheque Payments again");
                     checkout.ClickChequePayment(); //clicks cheque payment
-                    clickChequePayment = true;
+                    clickChequePayment = true; //exit loop if click successful
                 }
             }
         }
@@ -88,20 +91,20 @@ namespace uk.co.nfocus6.BDDproject.StepDefinitions
             {
                 try
                 {
-                    checkout.ClickPlaceOrder();
+                    checkout.ClickPlaceOrder(); //clicks place order
                     placedOrder = true;
                 }
                 catch (Exception e) //if click intercepted or stale element 
                 {
-                    Console.WriteLine(e.Message);
-                    Console.WriteLine("Clicking place order again");
+                    _outputHelper.WriteLine(e.Message);
+                    _outputHelper.WriteLine("Clicking place order again");
                     checkout.ClickPlaceOrder();
-                    placedOrder = true;
+                    placedOrder = true; //exit loop if click successful
                 }
             }
             
             string orderNo = checkout.GetOrderNo();
-            Console.WriteLine("Order Placed, Order No: " + "#" + orderNo); //writes order no to console
+            _outputHelper.WriteLine("Order Placed, Order No: " + "#" + orderNo); //writes order no to console
             _container.OrderNumber = orderNo; //stores
         }
 
@@ -121,7 +124,7 @@ namespace uk.co.nfocus6.BDDproject.StepDefinitions
             string latestOrder = orders.GetLatestOrder(); //first row in order table
             string orderNum = _container.OrderNumber; //get from container
             Assert.That(latestOrder, Does.Contain(orderNum), "Order not in table");
-            Console.WriteLine("Order " + orderNum + " found in orders table");
+            _outputHelper.WriteLine("Order " + orderNum + " found in orders table");
         }
     }
 }

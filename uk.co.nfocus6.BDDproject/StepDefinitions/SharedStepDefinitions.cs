@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TechTalk.SpecFlow.Infrastructure;
 using uk.co.nfocus6.BDDproject.POM;
 using uk.co.nfocus6.BDDproject.Utils;
 
@@ -15,11 +16,13 @@ namespace uk.co.nfocus6.BDDproject.StepDefinitions
     {
         private readonly ShopContainer _container;
         private IWebDriver _driver;
+        private readonly ISpecFlowOutputHelper _outputHelper;
 
-        public SharedStepDefinitions(ShopContainer container)
+        public SharedStepDefinitions(ShopContainer container, ISpecFlowOutputHelper outputHelper)
         {
             _container = container;
             this._driver = _container.Driver;
+            _outputHelper = outputHelper;
         }
 
         [Given(@"I am logged in to the ecommerce site")]
@@ -33,15 +36,15 @@ namespace uk.co.nfocus6.BDDproject.StepDefinitions
             //null
             if (username == string.Empty || password == string.Empty)
             {
-                Console.WriteLine("Username and/or password is null, please check Secret_Username & Secret_Password");
+                _outputHelper.WriteLine("Username and/or password is null, please check Secret_Username & Secret_Password");
                 Assert.Fail();
             }
 
             //enter username and password 
             myAccount.SetUsername(username!);
-            Console.WriteLine("Username entered");
+            _outputHelper.WriteLine("Username entered");
             myAccount.SetPassword(password!);
-            Console.WriteLine("Password entered");
+            _outputHelper.WriteLine("Password entered");
 
             //click login
             myAccount.ClickLogin();
@@ -50,7 +53,7 @@ namespace uk.co.nfocus6.BDDproject.StepDefinitions
             bool loggedIn = myAccount.IsLoggedIn();
             _container.LoggedIn = loggedIn;
             Assert.That(myAccount.IsLoggedIn() == true, "Incorrect User Credentials");
-            Console.WriteLine("Logged In");
+            _outputHelper.WriteLine("Logged In");
         }
 
         [Given(@"I have added '(.*)' to my cart")]
@@ -64,11 +67,11 @@ namespace uk.co.nfocus6.BDDproject.StepDefinitions
             ShopPOM shop = new ShopPOM(_driver);
             bool itemAdded = shop.AddItemToCart(addItem);
             Assert.That(itemAdded == true, "Item does not exist");
-            Console.WriteLine("Item added to cart");
+            _outputHelper.WriteLine("Item added to cart");
 
             //navigates to cart
             shop.ViewCart();
-            Console.WriteLine("View cart clicked");
+            _outputHelper.WriteLine("View cart clicked");
         }
 
     }

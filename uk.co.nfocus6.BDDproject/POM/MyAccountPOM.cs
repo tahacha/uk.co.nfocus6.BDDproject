@@ -18,7 +18,7 @@ namespace uk.co.nfocus6.BDDproject.POM
         public MyAccountPOM(IWebDriver driver) //constructor that takes in a driver from the test case
         {
             this._driver = driver;
-            HelperLib.WaitForElement(_driver, By.XPath("//h1[contains(.,'My account')]");
+            HelperLib.WaitForElement(_driver, By.XPath("//h1[contains(.,'My account')]"));
             Console.WriteLine("Viewing My Account Page");
         }
 
@@ -50,7 +50,6 @@ namespace uk.co.nfocus6.BDDproject.POM
         public void ClickLogin()
         {
             _loginButton.Click(); //clicks log in button
-            //SuccessfulLogin();
         }
 
         public bool IsLoggedIn()

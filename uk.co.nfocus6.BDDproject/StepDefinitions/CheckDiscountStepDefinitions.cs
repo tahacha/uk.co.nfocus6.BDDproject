@@ -10,6 +10,7 @@ using uk.co.nfocus6.BDDproject.POM;
 using NUnit.Framework;
 using uk.co.nfocus6.BDDproject.Utils;
 using TechTalk.SpecFlow.Assist;
+using TechTalk.SpecFlow.Infrastructure;
 
 namespace uk.co.nfocus6.BDDproject.StepDefinitions
 {
@@ -19,12 +20,13 @@ namespace uk.co.nfocus6.BDDproject.StepDefinitions
     {
         private readonly ShopContainer _container;
         private IWebDriver _driver;
+        private readonly ISpecFlowOutputHelper _outputHelper;
 
-        public CheckDiscountStepDefinitions(ShopContainer container)
+        public CheckDiscountStepDefinitions(ShopContainer container, ISpecFlowOutputHelper outputHelper)
         {
             _container = container;
             this._driver = _container.Driver;
-
+            _outputHelper = outputHelper;
         }
         
         [When(@"I input the coupon '(.*)'")]
@@ -33,7 +35,7 @@ namespace uk.co.nfocus6.BDDproject.StepDefinitions
             CartPOM cart = new CartPOM(_driver);
             cart.InputCoupon(coupon);
             cart.ApplyCoupon();
-            Console.WriteLine("Entered Coupon: " + coupon + " and clicked apply");
+            _outputHelper.WriteLine("Entered Coupon: " + coupon + " and clicked apply");
             _container.CouponName = coupon;
         }
 
@@ -51,8 +53,8 @@ namespace uk.co.nfocus6.BDDproject.StepDefinitions
                 Assert.That(couponApplied, Does.Contain("Coupon: " + userCoupon), "Discount not applied");
                 Assert.That(discountAdded, Is.EqualTo(discount), "Not a " + discount + "% discount, it's a " + discountAdded + "% discount");
             });
-            Console.WriteLine(userCoupon + " is a valid coupon");
-            Console.WriteLine("Correct discount applied - " + discount + "%");
+            _outputHelper.WriteLine(userCoupon + " is a valid coupon");
+            _outputHelper.WriteLine("Correct discount applied - " + discount + "%");
 
             
         }
@@ -66,7 +68,7 @@ namespace uk.co.nfocus6.BDDproject.StepDefinitions
             decimal calculatedTotal = cart.GetCalculatedTotal();
 
             Assert.That(orderTotal, Is.EqualTo(calculatedTotal), "Order total is not correct");
-            Console.WriteLine("Order total is correct");
+            _outputHelper.WriteLine("Order total is correct");
         }
 
     }

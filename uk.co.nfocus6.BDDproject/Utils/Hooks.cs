@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using uk.co.nfocus6.BDDproject.POM;
+using TechTalk.SpecFlow.Infrastructure;
 
 namespace uk.co.nfocus6.BDDproject.Utils
 {
@@ -17,10 +18,12 @@ namespace uk.co.nfocus6.BDDproject.Utils
     {
         private static IWebDriver? _driver;
         private readonly ShopContainer _container;
+        private readonly ISpecFlowOutputHelper _outputHelper;
 
-        public Hooks(ShopContainer container)
+        public Hooks(ShopContainer container, ISpecFlowOutputHelper outputHelper)
         {
             _container = container;
+            _outputHelper = outputHelper;
         }
 
         [Before("@GUI")]
@@ -41,7 +44,7 @@ namespace uk.co.nfocus6.BDDproject.Utils
                     break;
                 default: //if browser is null or not recognised 
                     _driver = new EdgeDriver();
-                    Console.WriteLine("BROWSER Env Missing/Not Recognised, driver set to Edge");
+                    _outputHelper.WriteLine("BROWSER Env Missing/Not Recognised, driver set to Edge");
                     break;
             }
 
@@ -63,7 +66,7 @@ namespace uk.co.nfocus6.BDDproject.Utils
             //Home page of ecommerce site
             HomePOM home = new HomePOM(_driver);
             home.DismissBanner();
-            Console.WriteLine("Closed banner at the bottom of the page");
+            _outputHelper.WriteLine("Closed banner at the bottom of the page");
 
             //Navigate to my account page
             NavBarPOM nav = new NavBarPOM(_driver);
