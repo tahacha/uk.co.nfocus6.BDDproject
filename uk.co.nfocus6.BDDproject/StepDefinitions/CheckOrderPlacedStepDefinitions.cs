@@ -45,6 +45,7 @@ namespace uk.co.nfocus6.BDDproject.StepDefinitions
 
             //new instance of table
             customerDetails = table.CreateInstance<BillingPOCO>();
+            CheckMandatoryFields(customerDetails);
             checkout.EnterFirstName(customerDetails.FirstName);
             checkout.EnterLastName(customerDetails.LastName);
             checkout.EnterCompany(customerDetails.Company);
@@ -123,6 +124,21 @@ namespace uk.co.nfocus6.BDDproject.StepDefinitions
             string orderNum = _container.OrderNumber; //get from container
             Assert.That(latestOrder, Does.Contain(orderNum), "Order not in table");
             _outputHelper.WriteLine("Order " + orderNum + " found in orders table");
+        }
+
+        private void CheckMandatoryFields(BillingPOCO customer)
+        {
+            Assert.Multiple(() =>
+            {
+                Assert.That(customer.FirstName, Is.Not.Empty, "FirstName is mandatory");
+                Assert.That(customer.LastName, Is.Not.Empty, "LastName is mandatory");
+                Assert.That(customer.LastName, Is.Not.Empty, "LastName is mandatory");
+                Assert.That(customer.Street, Is.Not.Empty, "Street Address is mandatory");
+                Assert.That(customer.City, Is.Not.Empty, "City is mandatory");
+                Assert.That(customer.Postcode, Is.Not.Empty, "Postcode is mandatory");
+                Assert.That(customer.Phone, Is.Not.Empty, "Phone is mandatory");
+                Assert.That(customer.Email, Is.Not.Empty, "Email is mandatory");
+            });
         }
     }
 }
