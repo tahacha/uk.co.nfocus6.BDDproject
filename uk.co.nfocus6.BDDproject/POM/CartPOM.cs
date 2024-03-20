@@ -18,8 +18,8 @@ namespace uk.co.nfocus6.BDDproject.POM
         public CartPOM(IWebDriver driver) //constructor 
         {
             this._driver = driver;
-            string headingText = _header.Text; //wait but also grabs text, no common element between states so wait on heading using XPath
-            Assert.That(headingText, Does.Contain("Cart"), "Not viewing the cart"); //check on cart page
+            HelperLib.WaitForElement(_driver, By.XPath("//h1[contains(.,'Cart')]"));
+            Console.WriteLine("Viewing Cart page");
         }
 
         //locators

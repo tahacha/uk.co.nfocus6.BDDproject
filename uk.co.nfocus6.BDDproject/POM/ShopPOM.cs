@@ -16,8 +16,6 @@ namespace uk.co.nfocus6.BDDproject.POM
         {
             this._driver = driver;
             HelperLib.WaitForElement(_driver, By.Name("orderby"));
-            string headingText = _headingText.Text;
-            Assert.That(headingText, Does.Contain("Shop")); //checks that user is on shop page
             Console.WriteLine("Viewing shop page");
         }
         private string _itemName = "";

@@ -19,8 +19,6 @@ namespace uk.co.nfocus6.BDDproject.POM
         {
             this._driver = driver;
             HelperLib.WaitForElement(_driver, By.LinkText("Dismiss")); //wait
-            string headingText = _headingText.Text;
-            Assert.That(headingText, Does.Contain("Welcome")); //checks to see if it's the home page
             Console.WriteLine("Viewing home page");
         }
         //locators

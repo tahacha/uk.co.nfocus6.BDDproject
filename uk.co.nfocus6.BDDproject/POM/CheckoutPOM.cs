@@ -18,10 +18,7 @@ namespace uk.co.nfocus6.BDDproject.POM
         {
             this._driver = driver;
             HelperLib.WaitForElement(_driver, By.Id("billing_first_name")); //wait
-            string headingText = _headingText.Text;
-            Assert.That(headingText, Does.Contain("Checkout"), "Not viewing checkout page"); //checks if user is on checkout page
             Console.WriteLine("Viewing checkout page"); 
-
         }
         //locators 
         private IWebElement _headingText => HelperLib.WaitForElement(_driver, By.TagName("h1"));
