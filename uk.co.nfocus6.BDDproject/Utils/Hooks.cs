@@ -87,14 +87,14 @@ namespace uk.co.nfocus6.BDDproject.Utils
                 CheckCart(); //check if cart needs to be emptied
                 Logout();
                 Console.WriteLine("Logged out");
-                _driver!.Quit();
             }
 
             else
             {
                 Console.WriteLine("User not logged in, logout process not needed");
-                _driver!.Quit();
             }
+
+            _driver!.Quit();
             
         }
         private static void CheckCart()
