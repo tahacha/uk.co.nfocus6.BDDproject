@@ -59,14 +59,12 @@ namespace uk.co.nfocus6.BDDproject.POM
             {
                 if(_logoutLink.Displayed)
                 {
-                    HelperLib.StaticTakeScreenshot(_driver, _header, "loggedIn_status");
                     return true; //if logged in 
                 }
 
             }
             catch (Exception)
             {
-                HelperLib.StaticTakeScreenshot(_driver, _header, "loggedIn_status");
                 //do nothing 
             }
 

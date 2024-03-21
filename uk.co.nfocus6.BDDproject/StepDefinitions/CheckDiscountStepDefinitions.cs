@@ -40,13 +40,13 @@ namespace uk.co.nfocus6.BDDproject.StepDefinitions
         }
 
         [Then(@"A discount of (.*)% is applied to my cart")]
-        public void ThenADiscountOfIsAppliedToMyCart(decimal discount)
+        public void ThenADiscountOfIsAppliedToMyCart(decimal discount) //passed from feature file
         {
             string userCoupon = _container.CouponName;
             //assert discount applied = discount passed to method
             CartPOM cart = new CartPOM(_driver);
-            string couponApplied = cart.DiscountApplied(); //stores cart totals table text
-            decimal discountAdded = cart.TheDiscount(); //actual discount applied
+            string couponApplied = cart.DiscountApplied(); //the name of coupon applied after clicking apply
+            decimal discountAdded = cart.TheDiscount(); //actual discount applied on the ecommerce site 
 
             Assert.Multiple(() =>
             {
@@ -64,8 +64,8 @@ namespace uk.co.nfocus6.BDDproject.StepDefinitions
         {
             //checks order total is correct
             CartPOM cart = new CartPOM(_driver);
-            decimal orderTotal = cart.GetOrderTotal();
-            decimal calculatedTotal = cart.GetCalculatedTotal();
+            decimal orderTotal = cart.GetOrderTotal(); //Order total on ecommerce site 
+            decimal calculatedTotal = cart.GetCalculatedTotal(); //calculation on values captured
 
             Assert.That(orderTotal, Is.EqualTo(calculatedTotal), "Order total is not correct");
             _outputHelper.WriteLine("Order total is correct");

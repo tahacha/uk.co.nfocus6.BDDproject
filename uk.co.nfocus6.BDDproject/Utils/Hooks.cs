@@ -17,12 +17,14 @@ namespace uk.co.nfocus6.BDDproject.Utils
     public class Hooks
     {
         private static IWebDriver? _driver;
+        private readonly ScenarioContext _scenarioContext;
         private readonly ShopContainer _container;
         private readonly ISpecFlowOutputHelper _outputHelper;
 
-        public Hooks(ShopContainer container, ISpecFlowOutputHelper outputHelper)
+        public Hooks(ShopContainer container, ScenarioContext scenarioContext, ISpecFlowOutputHelper outputHelper)
         {
             _container = container;
+            _scenarioContext = scenarioContext;
             _outputHelper = outputHelper;
         }
 
@@ -76,6 +78,11 @@ namespace uk.co.nfocus6.BDDproject.Utils
         [After("@GUI")]
         public void TearDown()
         {
+            if (_scenarioContext.TestError != null)
+            {
+                string failedTest = HelperLib.StaticTakeScreenshot(_driver!, "test-fail");
+                _outputHelper.AddAttachment(failedTest);
+            }
             string? startPage = TestContext.Parameters["WebAppURL"];
             if(startPage == string.Empty)
             {

@@ -27,7 +27,6 @@ namespace uk.co.nfocus6.BDDproject.POM
         public string GetLatestOrder()
         {
             string latestOrderText = _latestOrder.Text;
-            HelperLib.StaticTakeScreenshot(_driver, _orderTable, "order_table");
             return latestOrderText;
         }
     }

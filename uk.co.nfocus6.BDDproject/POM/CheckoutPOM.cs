@@ -121,7 +121,6 @@ namespace uk.co.nfocus6.BDDproject.POM
 
         public string GetOrderNo()
         {
-            HelperLib.StaticTakeScreenshot(_driver, _orderNo, "order_summary"); //screenshot of summary
             return _orderNo.Text;
         }
     }

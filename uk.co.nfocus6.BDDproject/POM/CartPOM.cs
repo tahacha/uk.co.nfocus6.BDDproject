@@ -40,14 +40,13 @@ namespace uk.co.nfocus6.BDDproject.POM
         private IWebElement _proceedToCheckout => HelperLib.WaitForElement(_driver, By.LinkText("Proceed to checkout"));
 
         private IWebElement _cartDiscount => HelperLib.WaitForElement(_driver, By.CssSelector(".cart-discount > th"));
-        private IWebElement _emptyCartMsg => HelperLib.WaitForElement(_driver, By.CssSelector(".cart-empty"));
         private IWebElement _returnToShop => HelperLib.WaitForElement(_driver, By.LinkText("Return to shop"),10);
 
         private IWebElement _bodyText => HelperLib.WaitForElement(_driver, By.TagName("body"));
 
         private IWebElement _cartTotals => HelperLib.WaitForElement(_driver, By.CssSelector(".cart_totals"));
 
-        private IWebElement _header => HelperLib.WaitForElement(_driver, By.XPath("//h1[contains(.,'Cart')]"));
+        private IWebElement _notice => HelperLib.WaitForElement(_driver, By.CssSelector(".woocommerce-notices-wrapper"));
         //decimals 
 
 
@@ -80,25 +79,22 @@ namespace uk.co.nfocus6.BDDproject.POM
                 if(_cartDiscount.Displayed) 
                 {
                     string couponText = _cartDiscount.Text;
-                    HelperLib.StaticTakeScreenshot(_driver, _cartTotals, "coupon_status", true);
                     return couponText;
                 }
 
             }
             catch (Exception)
             {
-                HelperLib.StaticTakeScreenshot(_driver, _bodyText, "coupon_status");
+
             }
             
             return "coupon invalid";
-            
         }
         public decimal TheDiscount()
         {
             decimal orderTotalNoShipWithDiscount = _orderTotalDecimal - _shippingPriceDecimal;
             decimal discountApplied = (_originalTotalDecimal - orderTotalNoShipWithDiscount) / _originalTotalDecimal; //calculated percentage change
             return discountApplied*100; //returns the discount decimal 
-
         }
 
         public decimal GetOrderTotal()

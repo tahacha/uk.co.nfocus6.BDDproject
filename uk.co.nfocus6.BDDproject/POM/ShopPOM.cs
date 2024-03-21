@@ -42,12 +42,10 @@ namespace uk.co.nfocus6.BDDproject.POM
 
             }
             return false; //item doesn't exist 
-
         }
 
         public void ViewCart()
         {
-            HelperLib.StaticTakeScreenshot(_driver, _viewCart, "item_added_to_cart", false);
             _viewCart.Click();
         }
 
