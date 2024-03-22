@@ -2,11 +2,6 @@
 using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Chrome;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using NUnit.Framework;
 using uk.co.nfocus6.BDDproject.POM;
 using TechTalk.SpecFlow.Infrastructure;
@@ -31,7 +26,7 @@ namespace uk.co.nfocus6.BDDproject.Utils
         [Before("@GUI")]
         public void SetUp()
         {
-            string? browser = Environment.GetEnvironmentVariable("BROWSER");
+            string? browser = Environment.GetEnvironmentVariable("BROWSER").ToLower();
 
             switch (browser) //switchs type of driver depending on "browser"
             {

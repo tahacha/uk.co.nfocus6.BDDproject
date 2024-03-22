@@ -1,11 +1,4 @@
-﻿using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace uk.co.nfocus6.BDDproject.StepDefinitions
+﻿namespace uk.co.nfocus6.BDDproject.StepDefinitions
 {
     public class BillingPOCO
     {

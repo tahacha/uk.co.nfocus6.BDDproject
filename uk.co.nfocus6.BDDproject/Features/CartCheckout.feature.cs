@@ -37,7 +37,8 @@ namespace uk.co.nfocus6.BDDproject.Features
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "EcommerceCartCheckoutFunctionality", "In order to promote the ecommerce site\r\ncheckout functionality \r\nmust be tested", ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "EcommerceCartCheckoutFunctionality", "As a user\r\nI want to be able to add an item to my cart \r\nSo I can go through the " +
+                    "checkout process ", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         

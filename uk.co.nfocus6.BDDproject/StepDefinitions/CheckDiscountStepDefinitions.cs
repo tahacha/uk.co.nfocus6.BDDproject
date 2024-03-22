@@ -1,15 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System;
-using TechTalk.SpecFlow;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using uk.co.nfocus6.BDDproject.POM;
 using NUnit.Framework;
 using uk.co.nfocus6.BDDproject.Utils;
-using TechTalk.SpecFlow.Assist;
 using TechTalk.SpecFlow.Infrastructure;
 
 namespace uk.co.nfocus6.BDDproject.StepDefinitions
