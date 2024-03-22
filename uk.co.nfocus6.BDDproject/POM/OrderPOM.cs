@@ -13,9 +13,6 @@ namespace uk.co.nfocus6.BDDproject.POM
             Console.WriteLine("Viewing Orders page");
         }
         //locators
-        private IWebElement _headingText => HelperLib.WaitForElement(_driver, By.TagName("h1"));
-        private IWebElement _orderTable => HelperLib.WaitForElement(_driver, By.TagName("tbody"));
-
         private IWebElement _latestOrder => HelperLib.WaitForElement(_driver, By.CssSelector("#post-7 > div > div > div > table > tbody > tr:nth-child(1)"));
 
         public string GetLatestOrder()

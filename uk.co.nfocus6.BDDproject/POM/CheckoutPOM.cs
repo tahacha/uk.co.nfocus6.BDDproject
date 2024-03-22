@@ -33,9 +33,6 @@ namespace uk.co.nfocus6.BDDproject.POM
 
         private IWebElement _orderNo => HelperLib.WaitForElement(_driver, By.CssSelector(".woocommerce-order-overview__order > strong")); //order no after summary
 
-        private IWebElement _orderSummary => HelperLib.WaitForElement(_driver, By.CssSelector(".woocommerce-order-overview woocommerce-thankyou-order-details order_details")); //full summary
-
-
         //methods
         public void EnterFirstName(string firstName)
         {

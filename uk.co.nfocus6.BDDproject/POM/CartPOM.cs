@@ -35,12 +35,7 @@ namespace uk.co.nfocus6.BDDproject.POM
 
         private IWebElement _bodyText => HelperLib.WaitForElement(_driver, By.TagName("body"));
 
-        private IWebElement _cartTotals => HelperLib.WaitForElement(_driver, By.CssSelector(".cart_totals"));
-
-        private IWebElement _notice => HelperLib.WaitForElement(_driver, By.CssSelector(".woocommerce-notices-wrapper"));
-        //decimals 
-
-
+        //decimals
         private decimal _originalTotalDecimal => HelperLib.ConvertToDecimal(_originalTotal); //original price as decimal
         private decimal _checkCouponDiscountDecimal => HelperLib.ConvertToDecimal(_checkCouponDiscount); //coupon discount as decimal
 

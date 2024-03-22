@@ -22,7 +22,6 @@ namespace uk.co.nfocus6.BDDproject.POM
         private IWebElement _orderLink => HelperLib.WaitForElement(_driver, By.LinkText("Orders")); //loactes orders link 
 
         private IWebElement _logoutLink => HelperLib.WaitForElement(_driver, By.LinkText("Log out"));
-        private IWebElement _header => HelperLib.WaitForElement(_driver, By.XPath("//h1[contains(.,'My account')]"));
         
         //service methods
 
