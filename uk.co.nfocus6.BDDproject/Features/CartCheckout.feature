@@ -1,8 +1,8 @@
 ﻿@GUI
 Feature: EcommerceCartCheckoutFunctionality
-In order to promote the ecommerce site
-checkout functionality 
-must be tested
+As a user
+I want to be able to add an item to my cart 
+So I can go through the checkout process 
 
 Background: 
 Given I am logged in to the ecommerce site
