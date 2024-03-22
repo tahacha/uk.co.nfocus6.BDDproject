@@ -101,8 +101,8 @@ namespace uk.co.nfocus6.BDDproject.StepDefinitions
             _container.OrderNumber = orderNo; //stores
         }
 
-        [Then(@"Verify my order has been placed by checking the orders page")]
-        public void ThenVerifyMyOrderHasBeenPlacedByCheckingTheOrdersPage()
+        [Then(@"Verify my order has been placed")]
+        public void ThenVerifyMyOrderHasBeenPlaced()
         {
             //takes order no from summary and compares it to the order no that appears in the order table
             NavBarPOM navBar = new NavBarPOM(_driver);

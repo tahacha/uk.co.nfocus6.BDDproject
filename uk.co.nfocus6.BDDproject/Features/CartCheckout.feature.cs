@@ -200,7 +200,7 @@ this.FeatureBackground();
  testRunner.Then("I can place my order", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 38
-   testRunner.And("Verify my order has been placed by checking the orders page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+   testRunner.And("Verify my order has been placed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

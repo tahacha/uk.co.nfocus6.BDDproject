@@ -35,7 +35,7 @@ Scenario: Checking The Order Has Been Placed
 	      | Email      | smith@example.com |
 	      | OrderNotes |                   |
 	Then I can place my order
-	  And Verify my order has been placed by checking the orders page 
+	  And Verify my order has been placed 
 	
 	#Company, County and OrderNotes are all optional fields
 	
